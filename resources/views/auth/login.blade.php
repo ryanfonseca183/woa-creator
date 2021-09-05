@@ -1,26 +1,37 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@section('title', 'Iniciar sessão')
 
 @section('body')
-    <x-auth-card>
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            {{-- EMAIL --}}
-            <x-controls.input type="email" label="E-mail" name="email" required autofocus />
+<div class="container-fluid auth-container auth-login">
+    <div class="row vh-100 align-items-center justify-content-center">
+        <div class="col-6">
+            <div class="row g-0 shadow rounded overflow-hidden">
+                <div class="col ">
+                    <div class="p-5 border-0">
+                        <div class="text-center">
+                            <img src="{{ asset('img/logo.png') }}" alt="" class="img-fluid mb-4" style="max-height: 150px">
+                            <h1 class="h3 mb-1 fw-bold">Bem vindo!</h1>
+                            <p class="mb-4">Faça login para começar a navegar</p>
+                        </div>
+                        <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate>
+                            @csrf
+                            {{-- EMAIL --}}
+                            <x-controls.input label="E-mail" name="email" type="email" class="form-control-lg rounded-pill" required autofocus />
 
-            {{-- SENHA --}}
-            <x-controls.input type="password" label="Senha" name="password" required autocomplete="current-password" />
-            
-            {{-- REMEMBER --}}
-            <x-controls.toggle type="checkbox" label="Manter conectado" name="remember" />
-           
-            <div class="d-flex flex-h-end flex-v-center mt-4">
-                @if (Route::has('password.request'))
-                    <a href="{{ route('password.request') }}" class="me-3">Esqueceu sua senha? </a>
-                @endif
-                <button class="btn btn-primary">Entrar</button>
+                            {{-- SENHA --}}
+                            <x-controls.input label="Senha" name="password" type="password" class="form-control-lg rounded-pill" required autocomplete="current-password" />
+
+                            <div class="text-center">
+                                <button class="btn btn-lg app-btn-primary mx-auto w-100 mt-4 rounded-pill mb-2">Entrar</button>
+                                <small><a href="{{ route('register') }}" class="btn btn-link btn-lg fs-6 rounded-pill w-100 text-decoration-none">Criar conta</a></small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col set-bg" style="background-image: url({{ asset('img/img5.png') }})" ></div>
             </div>
-        </form>
-    </x-auth-card>
+        </div>
+    </div>
+</div>
 @endsection

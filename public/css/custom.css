@@ -1,29 +1,78 @@
 @charset "UTF-8";
-
-[class*="flex-v-"], [class*="flex-h-"] {
-  display:flex;
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Georama:wght@100;400;700&family=Roboto:wght@100;400;700&display=swap');
+:root {
+  --yellow: #f9d25d;
+  --purple: #363a8a;
+  --orange: #f3b122;
+  --gradient: linear-gradient(200deg, rgba(114,215,252,1) 0%, rgba(189,239,208,1) 100%);
+  --font-header:  'Georama', sans-serif;
+  --font-body: 'Atkinson Hyperlegible', sans-serif;
+  --font-actions: 'Roboto', sans-serif;
 }
-.flex-h-start {
-  justify-content: flex-start;
+.bg-yellow {
+  background-color: var(--yellow);
 }
-.flex-h-end {
-  justify-content: flex-end;
+.bg-purple {
+  background-color: var(--purple);
 }
-.flex-h-center {
-  justify-content:center;
+.bg-orange {
+  background-color: var(--orange);
 }
-.flex-v-start {
-  align-items:flex-start;
+.bg-gradient {
+  background: var(--gradient);
 }
-.flex-v-end {
-  align-items:flex-end;
+.text-yellow {
+  color: var(--yellow);
 }
-.flex-v-center {
-  align-items:center;
+.text-purple {
+  color: var(--purple);
 }
-.flex-between {
-  display:flex;
-  justify-content:space-between;
+.text-orange {
+  color: var(--orange);
+}
+.set-bg {
+  background-size:cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header);
+}
+button, a {
+  font-family: var(--font-actions);
+}
+body {
+  font-family: var(--font-body);
+}
+.app-btn-outline-primary {
+  color: var(--orange);
+  border-color: var(--orange);
+  background: transparent;
+}
+.btn-link {
+  color: var(--orange);
+  text-decoration: none;
+}
+.btn-link:hover {
+  color: var(--orange);
+  background-color: #f9d25d34;
+}
+.btn-link:focus {
+  box-shadow: unset !important;
+}
+.app-btn-primary {
+  color: #fff;
+  background-color: var(--orange);
+  border-color: var(--yellow);
+}
+.app-btn-primary:hover,
+.app-btn-primary:focus {
+  color: #fff;
+  background-color: #db9f1d;
+  border-color: #eba91cb6;  
+}
+.app-btn-primary:focus{
+  box-shadow: 0 0 0 0.25rem #db9f1d81;
 }
 .img-wrapper, .img-wrapper-show {
   display:flex;
@@ -137,4 +186,22 @@
   margin: 0;
   outline: none;
   background:transparent;
+}
+.btn-icon {
+
+}
+.auth-container::after{
+  content: "";
+  width: 50%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  background: var(--yellow);
+  z-index: -1;
+}
+.auth-login::after {
+  left: 50%;
+}
+.auth-register::after {
+  left: 0;
 }
