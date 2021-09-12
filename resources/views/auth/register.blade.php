@@ -11,7 +11,9 @@
                 <div class="col ">
                     <div class="p-5 border-0">
                         <div class="text-center">
-                            <img src="{{ asset('img/logo.png') }}" alt="" class="img-fluid mb-4" style="max-height: 150px">
+                            <a href="{{ route('home') }}">
+                                <img src="{{ asset('img/logo.png') }}" alt="" class="img-fluid mb-4" style="max-height: 150px">
+                            </a>
                             <h1 class="h3 mb-1 fw-bold">Bem vindo!</h1>
                             <p class="mb-4">Crie seu portfólio gratuitamente</p>
                         </div>

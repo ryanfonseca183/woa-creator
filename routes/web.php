@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,10 +14,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
+Route::middleware('auth')->group(function(){
+    Route::view('/usuario/perfil', 'user.conta')->name('user.profile');
+    Route::view('/usuario/portfolios', 'user.portfolio')->name('user.portfolios');
+});
 
 require __DIR__.'/auth.php';
