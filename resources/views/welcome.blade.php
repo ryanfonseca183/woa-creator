@@ -5,11 +5,13 @@
 @push('assets-head')
     <style>
         .hero-section {
-            height: 50vh;
-            background-image: url('img/hero-background.jpg');
+            height: 60vh;
+            background-image: url('img/hero.jpg');
             background-size:cover;
             background-position: center;
             background-repeat: no-repeat;
+            border-bottom-left-radius: 300px;
+            border-bottom-right-radius: 300px;
         }
         .section-title {
 
@@ -27,52 +29,51 @@
           background-repeat: no-repeat;
           background-position: top center;
           background-size:contain;
+          position: relative;
           padding: 3rem 0;
         }
         .artistas {
-          padding-top: 500px;
-          margin-top: -300px;
-          position: relative;
-          z-index: -1;
         }
         .section-overlay {
-          background-color: #fafafa;
-          width: 100%;
-          height: calc(100% - 500px);
           position: absolute;
-          z-index: -1;
-          top: 350px;
+          top: -150px;
+          bottom: 0;
+          right: 0;
           left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(#ff9d2f, #ff6126);
+          transform: skewY(-6deg);
+          transform-origin: top right;
         }
         
     </style>
 @endpush
 @section('body')
-    <div class="shadow-sm">
-        <div class="container">
-            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
-                <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">Logo</a>
-                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+    <section class="hero-section">
+        <div class="container text-center h-100">
+          <div class="row h-100">
+            <div class="col-12">
+              <header class="d-flex align-items-center w-100 justify-content-between">
+                <a href="/">
+                  <img src="{{ asset('img/logo.png') }}" alt="" class="img-fluid mb-4" style="max-height: 150px">
+                </a>
+                <ul class="nav ">
                     <li><a href="#" class="nav-link px-2 link-secondary">Inicio</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">Artistas</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">Portfólios</a></li>
                     <li><a href="#" class="nav-link px-2 link-dark">Contato</a></li>
                 </ul>
-                <div class="col-md-3 text-end">
+                <div class="text-end">
                     <a href="{{ route('login') }}" class="btn app-btn-primary me-2">Login</a>
-                    <button type="button" class="btn link-primary">Cadastro</button>
+                    <a href="{{ route('register') }}" class="btn link-primary">Cadastro</a>
                 </div>
-            </header>
-        </div>
-    </div>
-    
-    
-    <section class="hero-section">
-        <div class="container text-center h-100 d-flex align-items-center justify-content-center flex-column">
-            <h1>Cupidatat voluptate</h1>
-            <p class="fs-3">Aliqua in aliquip amet proident duis voluptate veniam non.</p>
-            {{-- BUSCAR PORTFÓLIOS/ARTITAS --}}
-            <div class="input-group input-group-lg mb-3 w-50">
+              </header>
+            </div>
+            <div class="col align-self-center">
+              <h1>Cupidatat voluptate</h1>
+              <p class="fs-3 mb-5">Aliqua in aliquip amet proident duis voluptate veniam non.</p>
+              <div class="input-group input-group-lg mb-3 w-50 mx-auto">
                 <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Artistas</button>
                 <ul class="dropdown-menu">
                     <li><x-controls.toggle type="radio" label="Artistas" /></li>
@@ -83,6 +84,8 @@
                     <i class="fas fa-search"></i>
                 </button>
             </div>
+            </div>
+          </div>
         </div>
     </section>
 
@@ -129,7 +132,7 @@
         
     </section>
 
-    <section class="artistas" style="background-image: url({{ asset('img/waves.png') }});">
+    <section class="artistas">
       <div class="section-overlay"></div>
       <div class="container">
         <div class="row">

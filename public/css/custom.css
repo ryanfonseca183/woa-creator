@@ -21,6 +21,11 @@
 .bg-gradient {
   background: var(--gradient);
 }
+.text-gradient {
+  background: -webkit-linear-gradient(200deg, rgba(114,215,252,1) 0%, rgba(189,239,208,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .text-yellow {
   color: var(--yellow);
 }
@@ -204,4 +209,27 @@ body {
 }
 .auth-register::after {
   left: 0;
+}
+.icon-wrapper {
+  background-color:#f9d25d59;
+  color:var(--orange);
+  border-radius: 50%;
+  text-align:center;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.icon-lg {
+  width: 150px;
+  height: 150px;
+}
+.icon-md {
+  width: 100px;
+  height: 100px;
+}
+.icon-sm {
+  width: 50px;
+  height: 50px;
 }
