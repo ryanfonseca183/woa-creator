@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PortfolioController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function(){
     Route::view('/usuario/perfil', 'user.conta')->name('user.profile');
     Route::view('/usuario/portfolios', 'user.portfolio')->name('user.portfolios');
+    Route::resource('/portfolio', PortfolioController::class)->except('show');
 });
 
 require __DIR__.'/auth.php';
