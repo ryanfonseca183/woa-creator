@@ -16,7 +16,7 @@ class Ocupacao extends Model
      *
      * @var array
      */
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'visivel'];
 
     public function portfolio() {
         return $this->belongsTo('App\Models\Portfolio', 'portfolio_id');
