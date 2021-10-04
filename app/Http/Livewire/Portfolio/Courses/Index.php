@@ -14,10 +14,14 @@ class Index extends Component
             return $item->id . "";
         })->toArray();
     }
-    protected $listeners = ['courseSaved' => '$refresh'];
+    protected $listeners = ['courseSaved' => '$refresh', 'courseDeleted' => '$refresh', 'courseUpdated' => '$refresh'];
 
+    public function getCursosPortfolioProperty() {
+        return $this->portfolio->cursos->whereNotIn('id', auth()->user()->cursos->pluck('id')->toArray());
+    }
     public function deleteCourse($id) {
         $this->portfolio->cursos()->detach($id);
+        $this->emit('courseDeleted');
     }
     protected function arrayDiff($A, $B) {
         $intersect = array_intersect($A, $B);

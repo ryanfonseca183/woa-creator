@@ -32,7 +32,7 @@ class Portfolio extends Model
     ];
 
     public function ocupacoes() {
-        return $this->hasMany(Ocupacao::class, 'portifolio_id');
+        return $this->hasMany(Ocupacao::class, 'portfolio_id');
     }
     public function avaliacoes() {
         return $this->hasMany(Avaliacao::class, 'portfolio_id');

@@ -9,13 +9,11 @@ class Edit extends Component
 {
     public $portfolio, $curso, $padrao;
 
-    protected $listeners = ['modalUpdateOpened' => 'loadCourse'];
+    protected $listeners = ['updateCourseModalOpened' => 'mount'];
 
-    public function mount() {
-        $this->curso = new Curso;
-    }
-    public function loadCourse($cursoId) {
-        $this->curso = $this->portfolio->cursos()->where('curso.id', $cursoId)->firstOrFail();
+    public function mount($id = null) {
+        $this->curso = $id ? $this->portfolio->cursos()->where('curso.id', $id)->firstOrFail()
+                           : new Curso;
     }
     protected $rules = [
         'curso.instituicao' => 'required|string|max:180',
@@ -33,7 +31,7 @@ class Edit extends Component
         //Salva as alterações
         $this->curso->save();
         //Emite o evento
-        $this->emit('courseSaved');
+        $this->emit('courseUpdated');
     }
     public function render()
     {
