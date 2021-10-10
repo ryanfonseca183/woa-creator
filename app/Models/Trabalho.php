@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Trabalho extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'trabalho';
 
@@ -16,12 +17,12 @@ class Trabalho extends Model
      *
      * @var array
      */
-    protected $fillable = ['titulo', 'descricao'];
+    protected $fillable = ['titulo', 'descricao', 'visivel'];
 
     public function ocupacao() {
         return $this->belongsTo('App\Models\Ocupacao', 'ocupacao_id');
     }
     public function midias() {
-        return $this->hasMany('App\Models\Ocupacao', 'trabalho_id');
+        return $this->hasMany('App\Models\Midia', 'trabalho_id');
     }
 }

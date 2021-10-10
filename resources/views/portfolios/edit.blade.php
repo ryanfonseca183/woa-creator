@@ -12,9 +12,10 @@
         </h1>
 
         {{-- PORTFÓLIO --}}
-        <form action="{{ route('portfolio.update', [$portfolio->id]) }}" method="POST">
-            @csrf 
+        <form action="{{ route('portfolios.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
             @method('PUT')
+             {{-- PORTFÓLIO --}}
             <div class="card card-body mb-5">
                 <div class="row gx-3 align-items-center mb-4">
                     <div class="col-auto">
@@ -27,11 +28,29 @@
                         <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                     </div>
                 </div>
-                <x-controls.input label="Nome do portfólio" name="nome" value="{{ $portfolio->nome }}" />
+                <div class="row">
+                    <div class="col-auto">
+                        <label>
+                            <span class="mb-2 d-inline-block">Capa do portfólio</span>
+                            <div class="img-wrapper" style="height: 250px; width: 250px;">
+                                <img src="{{ asset('storage/' . $portfolio->capa) }}" class="img-preview" alt="">
+                            </div>
+                            <input type="file" name="capa" class="img-picker d-none">
+                        </label>
+                        @error('capa')
+                            <span class="invalid-feedback d-block">
+                                {{$message}}
+                            </span>
+                        @enderror
+                    </div>
+                    <div class="col">
+                        <x-controls.input label="Nome do portfólio" name="nome" value="{{ $portfolio->nome }}" />
 
-                <x-controls.toggle type="switch" label="Visível" name="visivel" value="1" :checked="$portfolio->visivel" />
-
-                <button class="btn btn-primary align-self-end mt-3">Salvar</button>
+                        <x-controls.toggle type="switch" label="Visível" name="visivel" value="1" :checked="$portfolio->visivel" />
+        
+                        <button class="btn btn-primary align-self-end mt-3">Salvar</button>
+                    </div>
+                </div>
             </div>
         </form>
 

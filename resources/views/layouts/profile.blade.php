@@ -71,11 +71,11 @@
                                   <i class="far fa-user me-3"></i>
                                   Conta
                                 </a>
-                                <a href="{{ route('user.portfolios') }}" class="list-group-item list-group-item-action @if($route == "user.portfolios") active rounded-pill @endif">
+                                <a href="{{ route('portfolios.index') }}" class="list-group-item list-group-item-action @if($route == "user.portfolios") active rounded-pill @endif">
                                   <i class="fas fa-stream me-3"></i>
                                   Meus portfólios
                                 </a>
-                                <a href="{{ route('user.portfolios') }}" class="list-group-item list-group-item-action">
+                                <a href="#" class="list-group-item list-group-item-action">
                                   <i class="far fa-heart me-3"></i>
                                   Avaliações
                                 </a>

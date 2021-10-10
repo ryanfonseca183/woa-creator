@@ -23,7 +23,9 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="{{  asset('plugins/toastr/toastr.min.css')}}">
         <script src="{{ asset('plugins/toastr/toastr.min.js') }}"></script>
-
+        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+        <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet"/>
+ 
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
         @stack('assets-head')
@@ -34,6 +36,11 @@
         @yield('body')
 
         @livewireScripts
+        <script src="{{ asset('js/filepond-translation-pt_BR.js') }}"></script>
+        <script src="{{ asset('js/custom.js') }}"></script>
+        <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
         @stack('assets-body')
     </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PortfolioController extends Controller
 {
@@ -13,7 +14,9 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        //
+        $portfolios = auth()->user()->portfolios;
+
+        return view('portfolios.index', compact('portfolios'));
     }
 
     /**
@@ -23,7 +26,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        return view('portfolio.create');
+        return view('portfolios.create');
     }
 
     /**
@@ -37,11 +40,15 @@ class PortfolioController extends Controller
         $validated = $request->validate([
             'nome' => 'required|string|max:45',
             'visivel' => 'nullable|boolean',
+            'capa' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
+        //Armazena a capa no storage
+        $validated['capa'] = $validated['capa']->store('capas', 'public');
 
+        //Cria o portfolio
         $portfolio = auth()->user()->portfolios()->create($validated);
 
-        return redirect()->route('portfolio.edit', $portfolio->id);
+        return redirect()->route('portfolios.edit', $portfolio->id);
     }
     /**
      * Show the form for editing the specified resource.
@@ -53,7 +60,7 @@ class PortfolioController extends Controller
     {
         $portfolio = auth()->user()->portfolios()->where('id', $id)->firstOrFail();
 
-        return view('portfolio.edit', ['portfolio' => $portfolio]);
+        return view('portfolios.edit', compact('portfolio'));
     }
 
     /**
@@ -68,11 +75,23 @@ class PortfolioController extends Controller
         $validated = $request->validate([
             'nome' => 'required|string|max:45',
             'visivel' => 'nullable|boolean',
+            'capa' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
+        //Recupera os dados do portfolio
+        $portfolio = auth()->user()->portfolios()->findOrFail($id);
 
-        auth()->user()->portfolios()->where('id', $id)->update(array_merge(['visivel' => 0], $validated));
+        if($validated['capa']) {
+            //Deleta a capa anterior do storage
+            Storage::disk('public')->delete($portfolio->capa);
 
-        return redirect()->route('portfolio.edit', $id);
+            //Armazena a nova capa no storage
+            $validated['capa'] = $validated['capa']->store('capas', 'public');
+        }
+        
+        //Atualiza os dados do portfolio
+        $portfolio->update(array_merge(['visivel' => 0], $validated));
+
+        return redirect()->route('portfolios.edit', $id);
     }
 
     /**
@@ -83,6 +102,8 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        auth()->user()->portfolios()->where('portfolio.id', $id)->delete();
+
+        return redirect()->route('portfolios.index');
     }
 }
