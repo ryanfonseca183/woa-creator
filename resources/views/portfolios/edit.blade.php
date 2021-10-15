@@ -57,14 +57,14 @@
         {{-- FORMAÇÃO ACADÊMICA --}}
         <div class="card mb-5">
             <div class="card-body">
-                <div class="row gx-3 align-items-center mb-4">
+                <div class="row gx-3 align-items-center">
                     <div class="col-auto">
                         <div class="icon-wrapper icon-sm d-inline-flex mb-0">
                             <i class="fs-5  fas fa-phone"></i>
                         </div>
                     </div>
                     <div class="col">
-                        <h3 class="h5 mb-0">Formação acadêmica</h3>
+                        <h3 class="h5 mb-0">Cursos e educação</h3>
                         <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                     </div>
                     <div class="col-auto">
@@ -73,8 +73,7 @@
                         </button>
                     </div>
                 </div>
-                <span class="fw-bold">Formações vinculadas a conta</span>
-                <p class="mb-0">Selecione as formações acadêmicas vinculadas a conta que são relevantes para este portfólio</p>
+               
             </div>
             <livewire:portfolio.courses.index :portfolio="$portfolio" />
         </div>

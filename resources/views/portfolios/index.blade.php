@@ -9,24 +9,21 @@
         <div class="row">
             @forelse($portfolios as $portfolio)
                 <div class="col-4">
-                    <div class="card h-100">
-                        <img src="{{ asset('storage/' . $portfolio->capa) }}" class="card-img-top" alt="...">
-                        <div class="card-body bg-light">
-                            <h5 class="card-title">{{$portfolio->nome}}</h5>
-                            <p class="card-text">
-                                {{$portfolio->visualizacoes}} visualizacoes <br/>
-                                {{$portfolio->curtidas}} curtidas <br/>
-                            </p>
-                            <div class="d-flex">
-                                <a href="{{ route('portfolios.edit', $portfolio->id) }}" class="btn btn-primary me-2">Ver</a>
-                                <form action="{{ route('portfolios.destroy', $portfolio->id) }}" method="POST">
-                                    @csrf 
-                                    @method('DELETE')
-                                    <button class="btn btn-danger">Deletar</button>
-                                </form>
+                    <a href="{{ route('portfolios.edit', $portfolio->id) }}">
+                        <div class="set-bg rounded"  style="height:250px; background-image: url({{ asset('storage/' . $portfolio->capa) }})">
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center text-muted py-3">
+                            <span>{{$portfolio->nome}}</span>
+                            <div>
+                                <span class="me-2">
+                                    <i class="fas fa-thumbs-up me-1"></i>{{$portfolio->visualizacoes}}
+                                </span>
+                                <span>
+                                    <i class="fas fa-eye me-1"></i>{{$portfolio->curtidas}} 
+                                </span>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @empty 
                 <div class="col">

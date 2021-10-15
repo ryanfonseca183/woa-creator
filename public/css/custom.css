@@ -246,3 +246,14 @@ body {
   max-width: 100%;
   max-height: calc(250px - 0.5rem);
 }
+button[class^="link-"] {
+  padding: 0;
+  outline:none;
+  background:transparent;
+  border:none;
+}
+.set-bg {
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

@@ -80,7 +80,7 @@ class PortfolioController extends Controller
         //Recupera os dados do portfolio
         $portfolio = auth()->user()->portfolios()->findOrFail($id);
 
-        if($validated['capa']) {
+        if(isset($validated['capa'])) {
             //Deleta a capa anterior do storage
             Storage::disk('public')->delete($portfolio->capa);
 

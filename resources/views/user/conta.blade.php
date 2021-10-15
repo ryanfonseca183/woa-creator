@@ -44,7 +44,7 @@
         </div>
 
         {{-- SEGURANÇA --}}
-        <div class="card card-body">
+        <div class="card card-body mb-5">
             <div class="row gx-3 align-items-center mb-4">
                 <div class="col-auto">
                     <div class="icon-wrapper icon-sm d-inline-flex mb-0">
@@ -74,8 +74,61 @@
                 </li>
             </ul>
         </div>
+
+        {{-- FORMAÇÃO ACADÊMICA --}}
+        <div class="card mb-5">
+            <div class="card-body">
+                <div class="row gx-3 align-items-center">
+                    <div class="col-auto">
+                        <div class="icon-wrapper icon-sm d-inline-flex mb-0">
+                            <i class="fs-5  fas fa-phone"></i>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3 class="h5 mb-0">Formação acadêmica</h3>
+                        <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createCourse">
+                            <i class="fas fa-plus me-2"></i>Novo
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <livewire:user.courses.index />
+        </div>
     </main>
       
+    {{-- CADASTRAR FORMAÇÃO ACADÊMICA --}}
+    <div class="modal fade" id="createCourse" tabindex="-1" aria-labelledby="createCourseLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="createCourseLabel">Cadastrar formação acadêmica</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <livewire:user.courses.create />
+            </div>
+          </div>
+        </div>
+    </div>
+
+    {{-- EDITAR FORMAÇÃO ACADÊMICA --}}
+    <div class="modal fade" id="editCourse" tabindex="-1" aria-labelledby="editCourseLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editCourseLabel">Editar formação acadêmica</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <livewire:user.courses.edit />
+            </div>
+          </div>
+        </div>
+    </div>
+
     {{-- ATUALIZAR DADOS GERAIS --}}
     <div class="modal fade" id="userGeneralInfoModal" tabindex="-1" aria-labelledby="userGeneralInfoModal" aria-hidden="true">
         <div class="modal-dialog">
@@ -108,19 +161,32 @@
 
     @push('assets-body')
         <script>
-            let userGeneralInfoModal =bootstrap.Modal.getOrCreateInstance(document.getElementById('userGeneralInfoModal'));
-            let userContactInfoModal =bootstrap.Modal.getOrCreateInstance(document.getElementById('userContactInfoModal'));
+            const userGeneralInfoModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('userGeneralInfoModal')),
+                  userContactInfoModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('userContactInfoModal')),
+                  createCourseModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('createCourse'));
+                  editCourseModalEl = document.getElementById('editCourse'),
+                  editCourseModal = bootstrap.Modal.getOrCreateInstance(editCourseModalEl),
 
+            editCourseModalEl.addEventListener('show.bs.modal', function(e){
+                Livewire.emit('updateCourseModalOpened', e.relatedTarget.getAttribute('data-course-id'));
+            });
             Livewire.on('userGeneralInfoUpdated', function(){
                 userGeneralInfoModal.hide();
             })
             Livewire.on('userContactInfoUpdated', function(){
                 userGeneralInfoModal.hide();
             })
-            Livewire.on('userGeneralInfoUpdated', function(){
-                userGeneralInfoModal.hide();
+            Livewire.on('courseUpdated', function(){
+                editCourseModal.hide();
+                toastr.success('Formação atualizada com sucesso!');
             })
-            toastr.warning('My name is Inigo Montoya. You killed my father, prepare to die!')
+            Livewire.on('courseSaved', function(){
+                createCourseModal.hide();
+                toastr.success('Formação criada com sucesso!');
+            })
+            Livewire.on('courseDeleted', function(){
+                toastr.success('Formação deletada com sucesso!');
+            })
         </script>
     @endpush
 @endsection

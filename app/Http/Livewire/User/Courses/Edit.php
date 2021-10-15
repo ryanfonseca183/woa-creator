@@ -1,30 +1,30 @@
 <?php
 
-namespace App\Http\Livewire\Portfolio\Courses;
+namespace App\Http\Livewire\User\Courses;
 
 use Livewire\Component;
 use App\Models\Curso;
 
 class Edit extends Component
 {
-    public $portfolio, $curso;
+    public $curso;
 
     protected $listeners = ['updateCourseModalOpened' => 'mount'];
 
     public function mount($id = null) {
-        $this->curso = $id ? $this->portfolio->cursos()->findOrFail($id)
+        $this->curso = $id ? auth()->user()->cursos()->findOrFail($id)
                            : new Curso;
     }
     protected $rules = [
         'curso.instituicao' => 'required|string|max:180',
         'curso.diploma' => 'nullable|string|max:45',
         'curso.area' => 'required|string|max:180',
-        'curso.data_inicio' => 'required|date',
+        'curso.data_inicio' => 'required|date_format:Y-m-d',
+        'curso.data_termino' => 'required|date_format:Y-m-d|after:curso.data_inicio',
         'curso.descricao' => 'required|string',
-        'curso.data_termino' => 'required|date|after:curso.data_inicio',
     ];
-
     public function save() {
+
         //Valida os campos
         $this->validate();
         //Salva as alterações

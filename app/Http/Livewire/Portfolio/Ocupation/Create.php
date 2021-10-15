@@ -3,14 +3,13 @@
 namespace App\Http\Livewire\Portfolio\Ocupation;
 
 use Livewire\Component;
-use App\Models\Ocupacao;
 
 class Create extends Component
 {
     public $portfolio, $nome, $visivel = 1;
     
     protected $rules = [
-        'nome' => 'required|string|max:80|unique:ocupacao,nome',
+        'nome' => 'required|string|max:80|unique:ocupacao,nome,null,id,deleted_at,null',
         'visivel' => 'nullable|boolean',
     ];
 
@@ -19,7 +18,7 @@ class Create extends Component
 
         $this->portfolio->ocupacoes()->create($validated);
 
-        $this->reset();
+        $this->reset(['nome', 'visivel']);
 
         $this->emit('ocupationSaved');
     }
