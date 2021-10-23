@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-outline-secondary btn-lg me-2">Cancelar</button>
+                    <a href="{{ route("portfolios.ocupacoes.show", ['portfolio' => $portfolio, 'ocupacao' => $ocupacao]) }}" class="btn btn-outline-secondary btn-lg me-2">Cancelar</a>
                     <button class="btn btn-primary btn-lg">Salvar</button>
                 </div>
             </form>

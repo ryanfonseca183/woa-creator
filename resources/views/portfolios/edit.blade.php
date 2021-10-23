@@ -5,7 +5,7 @@
 @section('content')
     <main>
         <h1 class="h4 mb-3">
-            <a href="#" title="Voltar" class="text-decoration-none me-2">
+            <a href="{{ route('portfolios.index') }}" title="Voltar" class="text-decoration-none me-2">
                 <i class="fas fa-long-arrow-alt-left" ></i>
             </a>
             Editar portfólio

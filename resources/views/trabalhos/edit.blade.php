@@ -48,8 +48,8 @@
                     @enderror
                 </div>
                 <div class="d-flex justify-content-end">
-                    <button class="btn btn-outline-secondary btn-lg me-2">Cancelar</button>
-                    <a href="#" class="btn btn-primary btn-lg">Salvar</a>
+                    <a href="{{ route("portfolios.ocupacoes.show", ['portfolio' => $trabalho->ocupacao->portfolio_id, 'ocupacao' => $trabalho->ocupacao_id])}}" class="btn btn-outline-secondary btn-lg me-2">Cancelar</a>
+                    <button class="btn btn-primary btn-lg">Salvar</button>
                 </div>
             </form>
         </main>
