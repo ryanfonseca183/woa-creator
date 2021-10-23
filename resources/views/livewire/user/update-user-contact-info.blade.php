@@ -31,7 +31,6 @@
             <x-controls.input wire:model.defer="url_twitter" label="Twitter" name="url_twitter" />
         </div>
     </div>
-
     <div class="row gx-3 align-items-top">
         <div class="col-auto">
             <div style="width: 40px;" class="text-center">
@@ -42,10 +41,6 @@
             <x-controls.input wire:model.defer="celular" label="Celular" name="celular" />
         </div>
     </div>
-
-
-   
-    
     <div class="d-flex justify-content-end my-4">
         <button type="button" class="btn btn-secondary me-2" data-bs-dismiss="modal">Fechar</button>
         <button type="submit" class="btn btn-primary">Salvar</button>

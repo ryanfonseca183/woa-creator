@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ocupacao extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'ocupacao';
 
@@ -16,7 +17,7 @@ class Ocupacao extends Model
      *
      * @var array
      */
-    protected $fillable = ['nome'];
+    protected $fillable = ['nome', 'visivel'];
 
     public function portfolio() {
         return $this->belongsTo('App\Models\Portfolio', 'portfolio_id');

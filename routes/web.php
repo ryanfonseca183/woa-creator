@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\TrabalhoController;
+use App\Http\Controllers\OcupacaoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +27,12 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function(){
     Route::view('/usuario/perfil', 'user.conta')->name('user.profile');
-    Route::view('/usuario/portfolios', 'user.portfolio')->name('user.portfolios');
+    Route::resource('portfolios', PortfolioController::class)->except('show');
+    Route::get('portfolios/{portfolio}/ocupacoes/{ocupacao}/show', OcupacaoController::class)->name('portfolios.ocupacoes.show');
+    Route::resource('portfolios.ocupacoes.trabalhos', TrabalhoController::class)->parameters([
+        'ocupacoes' => 'ocupacao'
+    ])->except('show')->shallow();
 });
+
 
 require __DIR__.'/auth.php';

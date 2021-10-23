@@ -35,6 +35,12 @@
 .text-orange {
   color: var(--orange);
 }
+a {
+  text-decoration: none;
+}
+.mx-n3 {
+  margin: 0 -0.5rem;
+}
 .set-bg {
   background-size:cover;
   background-position: center;
@@ -232,4 +238,22 @@ body {
 .icon-sm {
   width: 50px;
   height: 50px;
+}
+.img-wrapper {
+  padding: 0.25rem;
+}
+.img-preview {
+  max-width: 100%;
+  max-height: calc(250px - 0.5rem);
+}
+button[class^="link-"] {
+  padding: 0;
+  outline:none;
+  background:transparent;
+  border:none;
+}
+.set-bg {
+  background-size:cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
