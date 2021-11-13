@@ -46,4 +46,7 @@ class User extends Authenticatable
     public function cursos() {
         return $this->hasMany('App\Models\Curso', 'user_id');
     }
+    public function getPictureAttribute() {
+        return $this->avatar ? 'storage/' . $this->avatar : 'img/user.png';
+    }
 }
