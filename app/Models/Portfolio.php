@@ -40,7 +40,7 @@ class Portfolio extends Model
         return $this->hasMany(Avaliacao::class, 'portfolio_id');
     }
     public function user() {
-        return $this->belongsTo(User::class, 'users_id');
+        return $this->belongsTo(User::class);
     }
     public function cursos() {
         return $this->belongsToMany(Curso::class, 'curso_portfolio', 'portfolio_id', 'curso_id');

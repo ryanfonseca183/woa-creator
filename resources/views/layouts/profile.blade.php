@@ -21,7 +21,7 @@
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
                   <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Inicio</a>
                   </li>
@@ -62,31 +62,30 @@
             <div class="col-3">
                 <aside>
                     <div class="card card-body border-0 shadow-sm pb-5 p-4" style="margin-top: -100px;">
-                        <img src="{{ asset('img/user.png') }}" alt="" class="img-thumbnail rounded-circle mx-auto mb-3" width="100">
+                        <livewire:user.upload-avatar />
                         <h2 class="h5 text-center mb-5">{{ Str::before(auth()->user()->nome, ' ')  }}</h2>
                         <nav class="border-0">
                             @php $route = Route::getCurrentRoute()->getName(); @endphp
                             <ul class="list-group list-group-flush">
-                                <a  href="{{ route('user.profile') }}" class="list-group-item list-group-item-action @if($route == "user.profile") active rounded-pill @endif">
-                                  <i class="far fa-user me-3"></i>
-                                  Conta
+                                <a href="{{ route('user.profile') }}" class="list-group-item list-group-item-action @if($route == "user.profile") active rounded-pill @endif">
+                                    <i class="far fa-user me-3"></i>
+                                    Conta
                                 </a>
-                                <a href="{{ route('portfolios.index') }}" class="list-group-item list-group-item-action @if($route == "user.portfolios") active rounded-pill @endif">
-                                  <i class="fas fa-stream me-3"></i>
-                                  Meus portfólios
+                                <a href="{{ route('portfolios.index') }}" class="list-group-item list-group-item-action @if(Route::is('portfolios.*')) active rounded-pill @endif">
+                                    <i class="fas fa-stream me-3"></i>
+                                    Meus portfólios
                                 </a>
                                 <a href="#" class="list-group-item list-group-item-action">
-                                  <i class="far fa-heart me-3"></i>
-                                  Avaliações
+                                    <i class="far fa-heart me-3"></i>
+                                    Avaliações
                                 </a>
-                                <a class="list-group-item list-group-item-action">
-                                  <i class="far fa-question-circle  me-3"></i>
-                                  Ajuda
-                                </a>
-                                <a class="list-group-item list-group-item-action">
-                                  <i class="fas fa-sign-out-alt  me-3"></i>
-                                  Sair
-                                </a>
+                                <form action="{{ route('logout') }}" method="POST">
+                                  @csrf
+                                  <button type="submit" class="list-group-item list-group-item-action border-0">
+                                    <i class="fas fa-sign-out-alt  me-3"></i>
+                                    Sair
+                                  </button>
+                                </form>
                             </ul>
                         </nav>
                     </div>

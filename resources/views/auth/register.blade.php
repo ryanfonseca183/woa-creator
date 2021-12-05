@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.auth')
 
 @section('title', 'Criar conta')
 
@@ -20,7 +20,7 @@
                         <form method="POST" action="{{ route('register') }}" class="needs-validation" novalidate>
                             @csrf
                              {{-- NOME --}}
-                            <x-controls.input label="Nome completo" name="name" required autofocus class="form-control-lg rounded-pill" />
+                            <x-controls.input label="Nome completo" name="nome" required autofocus class="form-control-lg rounded-pill" />
 
                             {{-- EMAIL --}}
                             <x-controls.input type="email" label="E-mail" name="email" required class="form-control-lg rounded-pill" />
