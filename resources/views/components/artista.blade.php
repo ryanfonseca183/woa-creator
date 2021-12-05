@@ -1,10 +1,22 @@
-<div class="text-center">
-    <div class="card card-body border-yellow card-artist">
-        <p class="mb-0">Minim culpa est enim laborum in do anim labore sit non in dolore officia minim. Magna occaecat anim exercitation officia tempor nostrud cupidatat. Esse do ut amet voluptate ad tempor ad aliquip id ut cillum eu adipisicing.</p>
-        <span class="quotes"><i class="fas fa-quote-right"></i></span>
+@props(['object'])
+
+<div class="row align-items-center">
+    <div class="col-auto">
+        <a href="#">
+            <img src="{{ asset($object->avatar ? 'storage/'. $object->avatar : 'img/user.png') }} " class="img-thumbnail rounded-circle" style="height: 75px; width: 75px">
+        </a>
     </div>
-    <img src="{{ asset('img/artista-1.jpg') }}" class="img-thumbnail rounded-circle mb-3" style="height: 100px; width: 100px">
-    <h4 class="mb-0">Michael Smith</h4>
-    <small class="text-muted">Formiga, MG</small>
+    <div class="col">
+        <h4 class="mb-0"><a href="#">{{ $object->nome}}</a></h4>
+        <small class="text-muted">{{ $object->cidade }}, {{ $object->estado }}</small>
+        <p class="card-text">
+            <small class="text-muted me-2">
+                <i class="fas fa-thumbs-up me-1"></i>{{ $object->trabalhos_sum_curtidas ?? 0 }} 
+            </small>
+            <small class="text-muted">
+                <i class="fas fa-eye me-1"></i>{{ $object->trabalhos_sum_visualizacoes ?? 0 }} 
+            </small>
+        </p>
+    </div>
 </div>
 

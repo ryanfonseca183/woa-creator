@@ -43,6 +43,9 @@ class User extends Authenticatable
     public function portfolios() {
         return $this->hasMany('App\Models\Portfolio', 'user_id');
     }
+    public function trabalhos() {
+        return $this->hasMany('App\Models\Trabalho', 'user_id');
+    }
     public function cursos() {
         return $this->hasMany('App\Models\Curso', 'user_id');
     }

@@ -62,11 +62,14 @@ class TrabalhoController extends Controller
         ]);
 
         //Armazena o trabalho no banco
-        $trabalho = $ocupacao->trabalhos()->create($validated);
+        $trabalho = $ocupacao->trabalhos()->create(array_merge(['user_id' => $request->user()->id], $validated));
 
         //Armazena as imagens relacionadas
-        foreach($validated['filepond'] as $file) {
-            $trabalho->midias()->create(['url_midia' => $file->store('images', 'public')]);
+        foreach($validated['filepond'] as $key => $file) {
+            $trabalho->midias()->create([
+                'url_midia' => $file->store('images', 'public'),
+                'principal' => $key == 1 ? 1 : 0
+            ]);
         }
         return redirect()->route('trabalhos.edit', $trabalho);
     }

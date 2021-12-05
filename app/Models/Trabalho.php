@@ -17,12 +17,15 @@ class Trabalho extends Model
      *
      * @var array
      */
-    protected $fillable = ['titulo', 'descricao', 'visivel'];
+    protected $fillable = ['titulo', 'descricao', 'visivel', 'user_id'];
 
     public function ocupacao() {
         return $this->belongsTo('App\Models\Ocupacao', 'ocupacao_id');
     }
     public function midias() {
         return $this->hasMany('App\Models\Midia', 'trabalho_id');
+    }
+    public function scopeVisivel($query) {
+        return $query->where('visivel', 1);
     }
 }

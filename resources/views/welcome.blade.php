@@ -27,7 +27,7 @@
     
   </section>
 
-  {{-- TRABALHOS POPULARES --}}
+  {{-- TRABALHOS POPULARES 
   <section class="home-section">
       <div class="container">
           <div class="text-center">
@@ -47,6 +47,7 @@
           </div>
       </div>
   </section>
+  --}}
 
   {{-- PASSOS --}}
   <section class="home-section teps-section">
@@ -90,13 +91,13 @@
           <p class="section-description">Aliqua mollit eiusmod culpa laboris occaecat consequat dolor exercitation incididunt. Minim pariatur velit irure veniam. Consectetur aute qui in id incididunt irure irure mollit dolore magna culpa reprehenderit pariatur veniam.</p>
           <div class="row">
               <div class="col-md-6 col-lg-4">
-                  <x-artista />
+                  <x-artista-destaque />
               </div>
               <div class="col-md-6 col-lg-4">
-                  <x-artista />
+                  <x-artista-destaque />
               </div>
               <div class="col-md-6 col-lg-4">
-                  <x-artista />
+                  <x-artista-destaque />
               </div>
           </div>
       </div>

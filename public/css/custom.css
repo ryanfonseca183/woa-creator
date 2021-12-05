@@ -448,3 +448,26 @@ img:not(.no-fit) {
     border-bottom-right-radius: 150px;
   }
 }
+.card-work-img {
+  object-fit: cover;
+  height: 200px;
+  width: 100%;
+}
+.spad {
+  padding: 75px 0px;
+}
+.list-group-horizontal:first-child:not(:only-child) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.list-group-horizontal:not(:first-child) {
+  border-top: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  margin-top: -1px;
+}
+@media (min-width: 768px) {
+  .w-md-50 {
+    width: 50% !important;
+  }
+}
