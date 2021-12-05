@@ -5,6 +5,7 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\NavegacaoController;
 use App\Http\Controllers\TrabalhoController;
 use App\Http\Controllers\OcupacaoController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +18,7 @@ use App\Http\Controllers\OcupacaoController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', HomeController::class)->name('home');
 
 Route::get('navegacao', NavegacaoController::class)->name('navegacao');
 

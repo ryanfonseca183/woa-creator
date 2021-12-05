@@ -12,16 +12,8 @@
                 </div>
                 {{-- FILTROS DE PESQUISA --}}
                 <form action="{{ route('navegacao') }}" method="GET">
-                    <div class="input-group mb-3">
-                        <button class="btn app-btn-primary" type="submit"><i class="fas fa-search"></i></button>
-                        {{-- CAMPO DE BUSCA --}}
-                        <input type="text" name="search_text" class="form-control form-control-lg bg-light" placeholder="Buscar" value="{{ request('search_text') }}">
-                        {{-- TIPO DE BUSCA --}}
-                        <select class="form-select w-auto" style="flex:unset;" name="search_type">
-                            <option value="trabalho" @if($validated['search_type'] == 'trabalho') selected @endif>Trabalhos</option>
-                            <option value="artista" @if($validated['search_type'] == 'artista') selected @endif>Artistas</option>
-                        </select>
-                    </div>
+                    <x-controls.search class="mb-4" />
+
                     <div class="row justify-content-center justify-content-lg-between align-items-center gy-2">
                         <div class="col-auto order-last order-md-first">
                             <span class="text-muted">{{$collection->total()}} resultado(s) encontrado(s)</span>
@@ -70,22 +62,24 @@
         @if($collection->isNotEmpty())
             @if($validated['search_type'] == "artista")
                 {{-- ARTISTAS --}}
-                @foreach($collection->chunk(2) as $row)
-                    <ul class="list-group list-group-horizontal-md spad">
-                        @foreach($row as $column)
-                            <li class="list-group-item w-md-50">
-                                <x-artista :object="$column" />
-                            </li>
-                        @endforeach
-                    </ul>
-                @endforeach
+                <div class="spad">
+                    @foreach($collection->chunk(2) as $row)
+                        <ul class="list-group list-group-horizontal-md ">
+                            @foreach($row as $column)
+                                <li class="list-group-item w-md-50">
+                                    <x-artista :artista="$column" />
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endforeach
+                </div>
             @else
                 {{-- TRABALHOS--}}
                 <hr class="mb-0">
                 <div class="row gy-5 spad">
                     @foreach($collection as $object)
                         <div class="col-sm-6 col-lg-4 col-xl-3">
-                            <x-trabalho :object="$object"/>
+                            <x-trabalho :trabalho="$object"/>
                         </div>
                     @endforeach
                 </div>

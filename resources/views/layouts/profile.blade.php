@@ -13,49 +13,6 @@
 @endpush 
 
 @section('body')
-    <header class="shadow-sm">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container">
-              <a class="navbar-brand" href="#"><span class="text-gradient fw-bold fs-3">Woa Creator</span></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarScroll">
-                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Inicio</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Portfólios</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Contato</a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Perfil
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                      <li><a class="dropdown-item" href="#">Conta</a></li>
-                      <li><a class="dropdown-item" href="#">Meus portfólios</a></li>
-                      <li><a class="dropdown-item" href="#">Avaliações</a></li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li><a class="dropdown-item" href="#">Sair</a></li>
-                    </ul>
-                  </li>
-                </ul>
-                <form class="d-flex">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Pesquisar...">
-                        <button class="btn btn-outline-warning" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </form>
-              </div>
-            </div>
-          </nav>
-    </header>
     <div class="banner"></div>
     <div class="container pt-4">
         <div class="row">

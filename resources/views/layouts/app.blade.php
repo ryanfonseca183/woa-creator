@@ -35,24 +35,52 @@
     <body>
         {{-- HEADER --}}
         <header>
-            <div class="container text-center h-100">
+            <div class="container text-center h-100 py-3">
                 <div class="d-flex align-items-center w-100 justify-content-between">
-                    <a href="/">Woa Creator</a>
+                    <h1 class="h2 mb-0 ">
+                        <a href="{{ route('home') }}" class="d-flex align-items-center">
+                            <span class="text-gradient me-2">Woa</span>
+                            <span class="badge bg-app-gradient p-2">Creator</span>
+                        </a>
+                    </h1>
                     <ul class="nav ">
-                        <li><a href="#" class="nav-link px-2 link-secondary">Inicio</a></li>
-                        <li><a href="#" class="nav-link px-2 link-dark">Artistas</a></li>
-                        <li><a href="#" class="nav-link px-2 link-dark">Trabalhos</a></li>
-                        <li><a href="#" class="nav-link px-2 link-dark">Contato</a></li>
+                        <li><a href="{{ route('home') }}" class="nav-link px-2">Inicio</a></li>
+                        <li><a href="{{ route('navegacao', ['search_type' => 'artista']) }}" class="nav-link px-2">Artistas</a></li>
+                        <li><a href="{{ route('navegacao', ['search_type' => 'trabalho']) }}" class="nav-link px-2">Trabalhos</a></li>
+                        <li><a href="#" class="nav-link px-2">Contato</a></li>
                     </ul>
-                    <div class="text-end">
-                        <a href="{{ route('login') }}" class="btn app-btn-primary me-2">Login</a>
-                        <a href="{{ route('register') }}" class="btn link-primary">Cadastro</a>
-                    </div>
+                    @guest 
+                        <div class="text-end">
+                            <a href="{{ route('login') }}" class="btn link-primary"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+                            <a href="{{ route('register') }}" class="btn link-primary "><i class="fas fa-user me-2"></i>Cadastro</a>
+                        </div>
+                    @else 
+                        <div class="dropdown">
+                            <button class="btn app-btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>
+                                {{ Str::words(Auth::user()->nome, 1, ''); }}
+                            </button>
+                            <ul class="dropdown-menu" >
+                                <li><a class="dropdown-item" href="{{ route('user.profile') }}">Perfil</a></li>
+                                <li><a class="dropdown-item" href="#">Portfolios</a></li>
+                                <li><a class="dropdown-item" href="#">Avaliações</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form action="{{ route('logout') }}" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Sair</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endguest
                 </div>
             </div>
         </header>
         
-        @yield('body')
+        <div style="min-height: 10vh">
+            @yield('body')
+        </div>
 
         @livewireScripts
         <script src="{{ asset('js/filepond-translation-pt_BR.js') }}"></script>
@@ -60,9 +88,7 @@
         <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
         <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
-        <div style="min-height: 10vh">
             @stack('assets-body')
-        </div>
 
         <footer class="bg-dark pt-5 pb-3">
             <div class="d-flex flex-column align-items-center text-center">

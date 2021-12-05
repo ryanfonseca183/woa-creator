@@ -8,7 +8,7 @@
 
   --purple: #363a8a;
   --orange: #f3b122;
-  --gradient: linear-gradient(200deg, rgba(114,215,252,1) 0%, rgba(189,239,208,1) 100%);
+  --gradient: -webkit-linear-gradient(200deg, rgba(114,215,252,1) 0%, rgba(189,239,208,1) 100%);
   --font-header:  'Georama', sans-serif;
   --font-body: 'Atkinson Hyperlegible', sans-serif;
   --font-actions: 'Roboto', sans-serif;
@@ -22,11 +22,12 @@
 .bg-orange {
   background-color: var(--orange);
 }
-.bg-gradient {
+.bg-app-gradient {
   background: var(--gradient);
 }
 .text-gradient {
-  background: -webkit-linear-gradient(200deg, rgba(114,215,252,1) 0%, rgba(189,239,208,1) 100%);
+  background: var(--gradient);
+  background-clip:text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -68,7 +69,7 @@ body {
 }
 .app-btn-outline-primary {
   color: var(--orange);
-  border-color: var(--orange);
+  border-color: transparent !important;
   background: transparent;
 }
 .btn-link {
@@ -411,13 +412,14 @@ img:not(.no-fit) {
 }
 .input-group-search > .form-control {
   border: 0;
-  background: transparent;
-  box-shadow: none !important;
+  box-shadow: none;
   padding-top: 0;
+  background: transparent;
   padding-bottom: 0; 
 }
+
 .btn-type {
-  border-right: 1px solid darkgray;
+  border-right: 1px solid lightgray;
   box-shadow: none !important;
   padding: 0.25rem 0.5rem;
   font-size: .875rem;
@@ -460,11 +462,11 @@ img:not(.no-fit) {
 .spad {
   padding: 75px 0px;
 }
-.list-group-horizontal:first-child:not(:only-child) {
+.list-group-horizontal-md:first-child:not(:only-child) {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.list-group-horizontal:not(:first-child) {
+.list-group-horizontal-md:not(:first-child) {
   border-top: 0;
   border-top-right-radius: 0;
   border-top-left-radius: 0;

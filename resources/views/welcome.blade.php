@@ -9,45 +9,33 @@
       <h1 class="mb-1">Explore o mundo criativo</h1>
       <p class="fs-4 text-muted mb-5">Navegue pelos trabalhos de nossos melhores artistas</p>
       <div class="card card-body card-search">
-          <div class="input-group input-group-search">
-              <button class="btn dropdown-toggle btn-type" type="button" data-bs-toggle="dropdown">Trabalhos</button>
-              <ul class="dropdown-menu">
-                  <li class="dropdown-item">
-                    <x-controls.toggle type="radio" label="Trabalhos" name="type" id="type1" />
-                  </li>
-                  <li class="dropdown-item">
-                    <x-controls.toggle type="radio" label="Artistas" name="type" id="type2" />
-                  </li>
-              </ul>
-              <input type="text" class="form-control">
-              <button class="btn btn-search"><i class="fas fa-search"></i></button>
-          </div>
-      </div>
+        <form action="{{ route('navegacao') }}" method="GET">
+          <x-controls.search />
+        </form>
+    </div>
     </div>
     
   </section>
 
-  {{-- TRABALHOS POPULARES 
-  <section class="home-section">
-      <div class="container">
-          <div class="text-center">
-              <h2 class="mb-0">Trabalhos populares</h2>
-              <p class="section-description">Esse ex excepteur amet quis incididunt reprehenderit reprehenderit veniam laboris.</p>
-          </div>
-          <div class="row">
-              <div class="col-md-6 col-lg-4">
-                  <x-trabalho />
-              </div>
-              <div class="col-md-6 col-lg-4">
-                  <x-trabalho />
-              </div>
-              <div class="col-md-6 col-lg-4">
-                  <x-trabalho />
-              </div>
-          </div>
-      </div>
-  </section>
-  --}}
+  @if($trabalhos->isNotEmpty())
+    {{-- TRABALHOS POPULARES --}}
+    <section class="home-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="mb-0">Trabalhos populares</h2>
+                <p class="section-description">Esse ex excepteur amet quis incididunt reprehenderit reprehenderit veniam laboris.</p>
+            </div>
+            <div class="row">
+                @foreach($trabalhos as $trabalho)
+                    <div class="col-md-6 col-lg-4">
+                        <x-trabalho :trabalho="$trabalho" />
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+  @endif
+
 
   {{-- PASSOS --}}
   <section class="home-section teps-section">
@@ -84,22 +72,20 @@
       </div>
   </section>
 
-  {{-- ARTISTAS POPULARES --}}
-  <section class="home-section artists-section">
-      <div class="container text-center">
-          <h2 class="mb-0">Artistas em destaque</h2>
-          <p class="section-description">Aliqua mollit eiusmod culpa laboris occaecat consequat dolor exercitation incididunt. Minim pariatur velit irure veniam. Consectetur aute qui in id incididunt irure irure mollit dolore magna culpa reprehenderit pariatur veniam.</p>
-          <div class="row">
-              <div class="col-md-6 col-lg-4">
-                  <x-artista-destaque />
-              </div>
-              <div class="col-md-6 col-lg-4">
-                  <x-artista-destaque />
-              </div>
-              <div class="col-md-6 col-lg-4">
-                  <x-artista-destaque />
-              </div>
-          </div>
-      </div>
-  </section>
+  @if($artistas->isNotEmpty())
+    {{-- ARTISTAS POPULARES --}}
+    <section class="home-section artists-section">
+        <div class="container text-center">
+            <h2 class="mb-0">Artistas em destaque</h2>
+            <p class="section-description">Aliqua mollit eiusmod culpa laboris occaecat consequat dolor exercitation incididunt. Minim pariatur velit irure veniam. Consectetur aute qui in id incididunt irure irure mollit dolore magna culpa reprehenderit pariatur veniam.</p>
+            <div class="row">
+                @foreach($artistas as $artista)
+                    <div class="col-md-6 col-lg-4">
+                        <x-artista-destaque :artista="$artista" />
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+  @endif
 @endsection
