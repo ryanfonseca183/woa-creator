@@ -32,7 +32,7 @@
 
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <body>
         {{-- HEADER --}}
         <header>
             <div class="container text-center h-100">
@@ -60,7 +60,9 @@
         <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
         <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
-        @stack('assets-body')
+        <div style="min-height: 10vh">
+            @stack('assets-body')
+        </div>
 
         <footer class="bg-dark pt-5 pb-3">
             <div class="d-flex flex-column align-items-center text-center">

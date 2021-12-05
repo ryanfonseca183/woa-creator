@@ -13,7 +13,7 @@
                 {{-- FILTROS DE PESQUISA --}}
                 <form action="{{ route('navegacao') }}" method="GET">
                     <div class="input-group mb-3">
-                        <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                        <button class="btn app-btn-primary" type="submit"><i class="fas fa-search"></i></button>
                         {{-- CAMPO DE BUSCA --}}
                         <input type="text" name="search_text" class="form-control form-control-lg bg-light" placeholder="Buscar" value="{{ request('search_text') }}">
                         {{-- TIPO DE BUSCA --}}
@@ -99,7 +99,7 @@
                 <img src="{{ asset('img/navigation-not-found.png') }}" width="225" class="mb-5" alt="Nenhum registro encontrado" />
                 <h1 class="h2">Nenhum registro encontrado</h1>
                 <p>Tente buscar por outros termos ou volte a página inicial</p>
-                <a href="{{ route('home') }}" class="btn btn-primary">Página inicial</a>
+                <a href="{{ route('home') }}" class="btn app-btn-primary">Página inicial</a>
             </div>
         @endif
     </div>

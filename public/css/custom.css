@@ -44,6 +44,10 @@
 }
 a {
   text-decoration: none;
+  color: var(--orange);
+}
+a:hover {
+  color: var(--yellow)
 }
 .mx-n3 {
   margin: 0 -0.5rem;
