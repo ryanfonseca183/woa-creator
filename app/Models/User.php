@@ -52,4 +52,7 @@ class User extends Authenticatable
     public function getPictureAttribute() {
         return $this->avatar ? 'storage/' . $this->avatar : 'img/user.png';
     }
+    public function curtidas() {
+        return $this->hasMany(Curtida::class, 'user_id');
+    }
 }

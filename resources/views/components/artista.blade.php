@@ -3,7 +3,7 @@
 <div class="row align-items-center">
     <div class="col-auto">
         <a href="#">
-            <img src="{{ asset($artista->avatar ? 'storage/'. $artista->avatar : 'img/user.png') }} " class="img-thumbnail rounded-circle" style="height: 75px; width: 75px">
+            <x-avatar :user="$artista" />
         </a>
     </div>
     <div class="col">

@@ -28,4 +28,13 @@ class Trabalho extends Model
     public function scopeVisivel($query) {
         return $query->where('visivel', 1);
     }
+    public function user() {
+        return $this->belongsTo('App\Models\User', 'user_id');
+    }
+    public function curtidas() {
+        return $this->hasMany(Curtida::class, 'trabalho_id');
+    }
+    public function visualizacoes() {
+        return $this->hasMany(Visualizacao::class, 'trabalho_id');
+    }
 }

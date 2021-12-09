@@ -22,6 +22,8 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('navegacao', NavegacaoController::class)->name('navegacao');
 
+Route::get('trabalhos/{trabalho}', [TrabalhoController::class, 'show'])->name('trabalhos.show');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

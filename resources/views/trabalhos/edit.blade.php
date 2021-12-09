@@ -24,7 +24,7 @@
                     </div>
                     <x-controls.input label="Titulo" name="titulo" required value="{{ $trabalho->titulo }}" />
             
-                    <x-controls.textarea label="Descrição" name="descricao">{{ $trabalho->descricao }}</x-controls.textarea>
+                    <x-controls.textarea label="Descrição" name="descricao" rows="8" class="text-center">{{ $trabalho->descricao }}</x-controls.textarea>
             
                     <x-controls.toggle label="Visível" name="visivel" value="1" :checked="$trabalho->visivel == 1" />
                 </div>

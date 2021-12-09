@@ -4,7 +4,12 @@
 
 @section('content')
     <main>
-        <h2 class="h4">Portfólios</h2>
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="h4">Portfólios</h2>
+            <div>
+                <a href="{{ route('portfolios.create') }}" class="btn btn-primary ms-2">Novo</a>
+            </div>
+        </div>
         <hr>
         <div class="row">
             @forelse($portfolios as $portfolio)
@@ -14,14 +19,6 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center text-muted py-3">
                             <span>{{$portfolio->nome}}</span>
-                            <div>
-                                <span class="me-2">
-                                    <i class="fas fa-thumbs-up me-1"></i>{{$portfolio->visualizacoes}}
-                                </span>
-                                <span>
-                                    <i class="fas fa-eye me-1"></i>{{$portfolio->curtidas}} 
-                                </span>
-                            </div>
                         </div>
                     </a>
                 </div>

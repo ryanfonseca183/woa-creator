@@ -11,11 +11,7 @@ use Illuminate\Support\Facades\Storage;
 
 class TrabalhoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function loadModels($portfolio, $ocupacao, $trabalho = null) {
         $portfolio = auth()->user()->portfolios()->findOrFail($portfolio);
         $ocupacao = $portfolio->ocupacoes()->findOrFail($ocupacao);
@@ -24,6 +20,11 @@ class TrabalhoController extends Controller
 
         return [$portfolio, $ocupacao, $trabalhos];
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index($portfolio, $ocupacao)
     {
         return view('trabalhos.index', array_combine(
@@ -41,7 +42,6 @@ class TrabalhoController extends Controller
     {
         return view('trabalhos.create', compact('ocupacao', 'portfolio'));
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -73,15 +73,38 @@ class TrabalhoController extends Controller
         }
         return redirect()->route('trabalhos.edit', $trabalho);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Trabalho  $trabalho
      * @return \Illuminate\Http\Response
      */
-    public function edit(Trabalho $trabalho)
+    public function show(Request $request, Trabalho $trabalho)
     {
+        abort_if(!$trabalho->visivel, 404);
+        $user = $request->user();
+
+        if(!$trabalho->visualizacoes()->where('ip', $request->ip())
+                                      ->when($user, function($query, $user) { 
+                                        return $query->orWhere('user_id', $user->id); 
+                                      })->exists()) {
+
+            $trabalho->visualizacoes()->create(['user_id', $user->id ?? null, 'ip' => $request->ip()]);
+            $trabalho->increment('total_visualizacoes');
+        }
+
+        return view('trabalhos.show', compact('trabalho'));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Trabalho  $trabalho
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Request $request, Trabalho $trabalho)
+    {
+        abort_if($trabalho->user_id != $request->user()->id, 403);
+
         return view('trabalhos.edit', compact('trabalho'));
     }
 
@@ -97,7 +120,7 @@ class TrabalhoController extends Controller
         //Realiza a validação dos campos
         $validated = $request->validate([
             'titulo' => 'required|string|max:45',
-            'descricao' => 'required|string|max:255',
+            'descricao' => 'required|string',
             'visivel' => 'nullable|boolean',
             'filepond' => 'required|array',
             'filepond.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
@@ -111,8 +134,11 @@ class TrabalhoController extends Controller
         $trabalho->midias()->delete();
 
         //Armazena as novas midias
-        foreach($validated['filepond'] as $file) {
-            $trabalho->midias()->create(['url_midia' => $file->store('images', 'public')]);
+        foreach($validated['filepond'] as $key => $file) {
+            $trabalho->midias()->create([
+                'url_midia' => $file->store('images', 'public'),
+                'principal' => $key == 1 ? 1 : 0
+            ]);
         }
         return redirect()->route('trabalhos.edit', $trabalho);
     }

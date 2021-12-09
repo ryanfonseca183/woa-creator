@@ -13,17 +13,17 @@ class NavegacaoController extends Controller
     {
         //Define as opções de ordenamento
         $orderBy = [
-            1 => ['Mais vistos', 'visualizacoes'],
-            2 => ['Mais curtidos', 'curtidas'],
+            1 => ['Mais vistos', 'total_visualizacoes'],
+            2 => ['Mais curtidos', 'total_curtidas'],
         ];
         //Define as opções de quantidade de itens listados
         $itemsCount = [10, 20, 30];
 
         //Valida os parametros
-        $validated = array_merge(['orderBy' => 'visualizacoes', 'itemsCount' => 10, 'search_type' => 'trabalho'], $request->validate([
+        $validated = array_merge(['orderBy' => 'total_curtidas', 'itemsCount' => 10, 'search_type' => 'trabalho'], $request->validate([
             'search_type' => 'nullable|string|in:artista,trabalho',
             'search_text' => 'nullable|string|max:45',
-            'orderBy' => 'nullable|string|in:visualizacoes,curtidas',
+            'orderBy' => 'nullable|string|in:total_visualizacoes,total_curtidas',
             'itemsCount' => 'nullable|integer|in:10,20,30',
         ]));
 
@@ -64,7 +64,7 @@ class NavegacaoController extends Controller
                 })->when(Auth::check(), function($query) {
                     return $query->where('id', '!=', Auth::id());
                 })
-                ->withSum('trabalhos', 'visualizacoes')
-                ->withSum('trabalhos', 'curtidas');
+                ->withSum('trabalhos', 'total_visualizacoes')
+                ->withSum('trabalhos', 'total_curtidas');
     }
 }

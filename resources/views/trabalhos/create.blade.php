@@ -21,7 +21,7 @@
                     </div>
                     <x-controls.input label="Titulo" name="titulo" required />
             
-                    <x-controls.textarea label="Descrição" name="descricao" />
+                    <x-controls.textarea label="Descrição" name="descricao" rows="8" class="text-center" />
             
                     <x-controls.toggle label="Visível" name="visivel" value="1" checked />
                 </div>

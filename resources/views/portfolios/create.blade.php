@@ -5,7 +5,7 @@
 @section('content')
     <main>
         <h1 class="h4 mb-3">
-            <a href="#" title="Voltar" class="text-decoration-none me-2">
+            <a href="{{ route('portfolios.index') }}" title="Voltar" class="text-decoration-none me-2">
                 <i class="fas fa-long-arrow-alt-left" ></i>
             </a>
             Criar portfólio
@@ -25,27 +25,21 @@
                         <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-auto">
-                        <label>
-                            <span class="mb-2 d-inline-block">Capa do portfólio</span>
-                            <div class="img-wrapper" style="height: 250px; width: 250px;"></div>
-                            <input type="file" name="capa" class="img-picker d-none">
-                        </label>
-                        @error('capa')
-                            <span class="invalid-feedback d-block">
-                                {{$message}}
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <x-controls.input label="Nome do portfólio" name="nome" />
+                <label>
+                    <span class="mb-2 d-inline-block">Capa do portfólio</span>
+                    <div class="img-wrapper w-100 mb-3" style="height: 250px;"></div>
+                    <input type="file" name="capa" class="img-picker d-none">
+                </label>
+                @error('capa')
+                    <span class="invalid-feedback d-block">
+                        {{$message}}
+                    </span>
+                @enderror
+                <x-controls.input label="Nome do portfólio" name="nome" />
 
-                        <x-controls.toggle type="switch" label="Visível" name="visivel" value="1" checked />
-        
-                        <button class="btn btn-primary align-self-end mt-3">Salvar</button>
-                    </div>
-                </div>
+                <x-controls.toggle type="switch" label="Visível" name="visivel" value="1" checked />
+
+                <button class="btn btn-primary align-self-start mt-3">Salvar</button>
             </div>
         </form>
     </main>

@@ -69,8 +69,38 @@ body {
 }
 .app-btn-outline-primary {
   color: var(--orange);
-  border-color: transparent !important;
+  border-color: var(--orange);
   background: transparent;
+}
+.app-btn-outline-primary:hover {
+  background: var(--orange);
+  color: #fff;
+}
+.work-description {
+  margin-bottom: 0;
+  overflow:hidden;
+  white-space:pre-wrap;
+}
+.like-btn {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  padding: 0;
+  transition: all  0.3s ease;
+}
+.like-btn span {
+  display: none;
+  margin-left: 0.5rem;
+}
+.like-btn:hover {
+  padding: 0 1rem;
+  width: auto;
+  border-radius: 50rem!important;
+}
+.like-btn:hover span {
+  display:inline-block !important;
 }
 .btn-link {
   color: var(--orange);
@@ -86,7 +116,7 @@ body {
 .app-btn-primary {
   color: #fff;
   background-color: var(--orange);
-  border-color: var(--yellow);
+  border-color: transparent;
 }
 .app-btn-primary:hover,
 .app-btn-primary:focus {
@@ -104,12 +134,13 @@ body {
 }
 .img-wrapper {
   background: #f8f9fa  url('../img/icons/image.png') no-repeat center;
-  border: 3px dashed darkgray;
+  border: 3px dashed rgba(0,0,0,.125);
   cursor: pointer;
-  padding: 0.25rem;
 }
 .img-preview {
+  object-fit: cover;
   max-height: 100%;
+  width: 100%;
 }
 .img-wrapper.small {
   height: 64px;
@@ -417,7 +448,9 @@ img:not(.no-fit) {
   background: transparent;
   padding-bottom: 0; 
 }
-
+.justify-self-center {
+  justify-self: center;
+}
 .btn-type {
   border-right: 1px solid lightgray;
   box-shadow: none !important;
