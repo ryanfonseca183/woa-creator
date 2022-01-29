@@ -2,7 +2,7 @@
     @if(auth()->user()->cursos->isNotEmpty() || $this->cursosPortfolio->isNotEmpty())
         @if(auth()->user()->cursos->isNotEmpty())
             {{-- FORMAÇÕES ACADEMICAS --}}
-            <div class="card-body">
+            <div class="card-body bg-light">
                 <span class="fw-bold">Formações acadêmicas</span>
                 <p class="mb-0">Selecione as formações acadêmicas que são relevantes para este portfólio</p>
             </div>
@@ -28,8 +28,18 @@
             </ul>
         @endif
         {{-- CURSOS --}}
-        <div class="card-body">
-            <span class="fw-bold">Cursos complementares</span>
+        <div class="card-body bg-light">
+            <div class="row align-items-center">
+                <div class="col">
+                    <span class="fw-bold">Cursos complementares</span>
+                    <p class="mb-0">Informe os cursos extras relevantes a este portfólio</p>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#createCourse">
+                        Criar curso
+                    </button>
+                </div>
+            </div>
         </div>
         <ul class="list-group list-group-flush">
             @forelse($this->cursosPortfolio as $curso)
@@ -41,8 +51,12 @@
                             {{$curso->inicio }} até {{$curso->termino }}
                         </div>
                         <div class="col-auto">
-                            <button class="btn btn-link" class="me-2" data-bs-toggle="modal" data-bs-target="#editCourse" data-course-id="{{ $curso->id }}">Editar</button>
-                            <button class="btn btn-link" wire:click="deleteCourse({{$curso->id}})">Excluir</button>
+                            <button class="btn-icon me-2" data-bs-toggle="modal" data-bs-target="#editCourse" data-course-id="{{ $curso->id }}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon" wire:click="deleteCourse({{$curso->id}})">
+                                <i class="far fa-trash-alt"></i>
+                            </button>
                         </div>
                     </div>
                 </li>
@@ -53,4 +67,5 @@
     @else 
         <div class="card-body">Nenhum curso cadastrado até o momento</div>
     @endif
+    
 </div>

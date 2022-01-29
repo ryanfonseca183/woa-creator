@@ -13,6 +13,9 @@
   --font-body: 'Atkinson Hyperlegible', sans-serif;
   --font-actions: 'Roboto', sans-serif;
 }
+.flex-1 {
+  flex: 1;
+}
 .bg-yellow {
   background-color: var(--yellow);
 }
@@ -32,13 +35,13 @@
   -webkit-text-fill-color: transparent;
 }
 .text-yellow {
-  color: var(--yellow);
+  color: var(--yellow) !important;
 }
 .text-purple {
-  color: var(--purple);
+  color: var(--purple) !important;
 }
 .text-orange {
-  color: var(--orange);
+  color: var(--orange) !important; 
 }
 .border-yellow {
   border: 1px solid var(--yellow);
@@ -80,6 +83,14 @@ body {
   margin-bottom: 0;
   overflow:hidden;
   white-space:pre-wrap;
+}
+.btn-icon {
+  background: transparent;
+  padding: 0;
+  outline:none;
+  border:none;
+  color: var(--orange);
+  font-size: 1rem;
 }
 .like-btn {
   width: 50px;
@@ -509,4 +520,8 @@ img:not(.no-fit) {
   .w-md-50 {
     width: 50% !important;
   }
+}
+.profile-main-content {
+  min-height: 55vh;
+  padding-bottom: 3rem;
 }

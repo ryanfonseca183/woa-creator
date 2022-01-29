@@ -4,54 +4,16 @@
 
 @section('content')
     <main>
-        <h1 class="h4 mb-3">
-            <a href="{{ route('portfolios.index') }}" title="Voltar" class="text-decoration-none me-2">
-                <i class="fas fa-long-arrow-alt-left" ></i>
-            </a>
-            Editar portfólio
-        </h1>
+        <x-page-title title="Editar portfólio">
+            <x-back route="portfolios.index" />
+        </x-page-title>
+        
 
         {{-- PORTFÓLIO --}}
         <form action="{{ route('portfolios.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-             {{-- PORTFÓLIO --}}
-            <div class="card card-body mb-5">
-                <div class="row gx-3 align-items-center mb-4">
-                    <div class="col-auto">
-                        <div class="icon-wrapper icon-sm d-inline-flex mb-0">
-                            <i class="fs-5  fas fa-phone"></i>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <h3 class="h5 mb-0">Portfólio</h3>
-                        <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-auto">
-                        <label>
-                            <span class="mb-2 d-inline-block">Capa do portfólio</span>
-                            <div class="img-wrapper" style="height: 250px; width: 250px;">
-                                <img src="{{ asset('storage/' . $portfolio->capa) }}" class="img-preview" alt="">
-                            </div>
-                            <input type="file" name="capa" class="img-picker d-none">
-                        </label>
-                        @error('capa')
-                            <span class="invalid-feedback d-block">
-                                {{$message}}
-                            </span>
-                        @enderror
-                    </div>
-                    <div class="col">
-                        <x-controls.input label="Nome do portfólio" name="nome" value="{{ $portfolio->nome }}" />
-
-                        <x-controls.toggle type="switch" label="Visível" name="visivel" value="1" :checked="$portfolio->visivel" />
-        
-                        <button class="btn btn-primary align-self-end mt-3">Salvar</button>
-                    </div>
-                </div>
-            </div>
+            <x-forms.portfolio.create :portfolio="$portfolio" />
         </form>
 
         {{-- FORMAÇÃO ACADÊMICA --}}
@@ -60,17 +22,12 @@
                 <div class="row gx-3 align-items-center">
                     <div class="col-auto">
                         <div class="icon-wrapper icon-sm d-inline-flex mb-0">
-                            <i class="fs-5  fas fa-phone"></i>
+                            <i class="fs-5 fas fa-graduation-cap"></i>
                         </div>
                     </div>
                     <div class="col">
                         <h3 class="h5 mb-0">Cursos e educação</h3>
                         <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
-                    </div>
-                    <div class="col-auto">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createCourse">
-                            <i class="fas fa-plus me-2"></i>Novo
-                        </button>
                     </div>
                 </div>
                
@@ -84,7 +41,7 @@
                 <div class="row gx-3 align-items-center">
                     <div class="col-auto">
                         <div class="icon-wrapper icon-sm d-inline-flex mb-0">
-                            <i class="fs-5  fas fa-phone"></i>
+                            <i class="fs-5 fas fa-pencil-ruler"></i>
                         </div>
                     </div>
                     <div class="col">
@@ -92,8 +49,8 @@
                         <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createOcupation">
-                            <i class="fas fa-plus me-2"></i>Novo
+                        <button class="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#createOcupation">
+                           Criar ocupação
                         </button>
                     </div>
                 </div>
@@ -102,12 +59,12 @@
         </div>
     </main>
 
-    {{-- CADASTRAR FORMAÇÃO ACADÊMICA --}}
+    {{-- CADASTRAR CURSO COMPLEMENTAR --}}
     <div class="modal fade" id="createCourse" tabindex="-1" aria-labelledby="createCourseLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="createCourseLabel">Cadastrar formação acadêmica</h5>
+              <h5 class="modal-title" id="createCourseLabel">Cadastrar curso complementar</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -117,12 +74,12 @@
         </div>
     </div>
 
-    {{-- EDITAR FORMAÇÃO ACADÊMICA --}}
+    {{-- EDITAR CURSO COMPLEMENTAR --}}
     <div class="modal fade" id="editCourse" tabindex="-1" aria-labelledby="editCourseLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="editCourseLabel">Editar formação acadêmica</h5>
+              <h5 class="modal-title" id="editCourseLabel">Editar curso complementar</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -171,6 +128,7 @@
               createCourseModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('createCourse')),
               editOcupationModal = bootstrap.Modal.getOrCreateInstance(editOcupationModalEl),
               createOcupationModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('createOcupation'));
+
         editCourseModalEl.addEventListener('show.bs.modal', function(e){
             Livewire.emit('updateCourseModalOpened', e.relatedTarget.getAttribute('data-course-id'));
         });
@@ -179,14 +137,14 @@
         });
         Livewire.on('courseUpdated', function(){
             editCourseModal.hide();
-            toastr.success('Formação atualizada com sucesso!');
+            toastr.success('Curso atualizado com sucesso!');
         })
         Livewire.on('courseSaved', function(){
             createCourseModal.hide();
-            toastr.success('Formação criada com sucesso!');
+            toastr.success('Curso criado com sucesso!');
         })
         Livewire.on('courseDeleted', function(){
-            toastr.success('Formação deletada com sucesso!');
+            toastr.success('Curso deletado com sucesso!');
         })
         Livewire.on('ocupationUpdated', function(){
             editOcupationModal.hide();

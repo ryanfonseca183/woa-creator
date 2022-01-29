@@ -15,12 +15,12 @@
 @section('body')
     <div class="banner"></div>
     <div class="container pt-4">
-        <div class="row">
-            <div class="col-3">
+        <div class="row gy-5 justify-content-center">
+            <div class="col-sm-8 col-lg-4 col-xl-3">
                 <aside>
-                    <div class="card card-body border-0 shadow-sm pb-5 p-4" style="margin-top: -100px;">
+                    <div class="card card-body border-0 shadow-sm pb-lg-5 p-4" style="margin-top: -100px;">
                         <livewire:user.upload-avatar />
-                        <h2 class="h5 text-center mb-5">{{ Str::before(auth()->user()->nome, ' ')  }}</h2>
+                        <h2 class="h5 text-center mb-4 mb-lg-5">{{ Str::before(auth()->user()->nome, ' ')  }}</h2>
                         <nav class="border-0">
                             @php $route = Route::getCurrentRoute()->getName(); @endphp
                             <ul class="list-group list-group-flush">
@@ -48,8 +48,10 @@
                     </div>
                 </aside>
             </div>
-            <div class="col">
-                @yield('content')
+            <div class="col-12 col-lg-8 col-xl-9">
+                <div class="profile-main-content">
+                    @yield('content')
+                </div>
             </div>
         </div>
     </div>
