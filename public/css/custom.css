@@ -188,6 +188,17 @@ body {
 .img-wrapper-show .img-fluid {
   max-height: 100%;
 }
+.carousel-indicators {
+  margin-bottom: 0;
+  transform: translateY(calc(100% + 1rem));
+}
+.carousel-indicators [data-bs-target] {
+  height: 15px;
+  width: 15px;
+  background: var(--orange);
+  border-radius: 50%;
+  border: none;
+}
 .accordion-text {
   display:inline-block;
   padding: 1rem 1.25rem;

@@ -5,7 +5,9 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\NavegacaoController;
 use App\Http\Controllers\TrabalhoController;
 use App\Http\Controllers\OcupacaoController;
+use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\HomeController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +30,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('usuario/{id?}', [UsuarioController::class, 'trabalhos'])->name('user.profile');
+Route::get('usuario/{id}/portfolios', [UsuarioController::class, 'portfolios'])->name('user.portfolios.index');
+Route::get('usuario/{usuario}/portfolios/{portfolio}', [UsuarioController::class, 'portfolio'])->name('user.portfolios.show');
+
 Route::middleware('auth')->group(function(){
-    Route::view('perfil', 'user.conta')->name('user.profile');
     Route::resource('portfolios', PortfolioController::class);
     Route::get('portfolios/{portfolio}/ocupacoes/{ocupacao}/show', OcupacaoController::class)->name('portfolios.ocupacoes.show');
     Route::resource('portfolios.ocupacoes.trabalhos', TrabalhoController::class)->parameters([

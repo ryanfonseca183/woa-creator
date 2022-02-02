@@ -5,7 +5,7 @@
 @section('content')
     <main>
         <x-page-title title="Criar portfólio" >
-            <x-back route="portfolios.index" />
+            <x-back route="{{ route('portfolios.index') }}" />
         </x-page-title>
 
         <form action="{{ route('portfolios.store') }}" method="POST" enctype="multipart/form-data">

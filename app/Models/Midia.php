@@ -26,7 +26,9 @@ class Midia extends Model
     protected $casts = [
         'e_principal' => 'boolean',
     ];
-
+    public function scopePrincipal($query) {
+        return $query->where('principal', 1);
+    }
     public function trabalho() {
         return $this->belongsTo('App\Models\Trabalho', 'trabalho_id'); 
     }

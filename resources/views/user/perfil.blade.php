@@ -18,7 +18,9 @@
                     <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#userGeneralInfoModal">Editar</button>
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#userGeneralInfoModal">
+                        <i class="fas fa-edit me-2"></i>Editar
+                    </button>
                 </div>
             </div>
             <livewire:user.show-user-general-info />
@@ -37,7 +39,9 @@
                     <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                 </div>
                 <div class="col-auto">
-                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#userContactInfoModal">Editar</button>
+                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#userContactInfoModal">
+                        <i class="fas fa-edit me-2"></i>Editar
+                    </button>
                 </div>
             </div>
             <livewire:user.show-user-contact-info />
@@ -54,9 +58,6 @@
                 <div class="col">
                     <h3 class="h5 mb-0">Segurança</h3>
                     <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
-                </div>
-                <div class="col-auto">
-                    <button class="btn btn-outline-warning">Editar</button>
                 </div>
             </div>
             <ul class="list-group list-group-flush border-0">
@@ -81,7 +82,7 @@
                 <div class="row gx-3 align-items-center">
                     <div class="col-auto">
                         <div class="icon-wrapper icon-sm d-inline-flex mb-0">
-                            <i class="fs-5  fas fa-phone"></i>
+                            <i class="fs-5 fas fa-graduation-cap"></i>
                         </div>
                     </div>
                     <div class="col">
@@ -89,8 +90,8 @@
                         <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#createCourse">
-                            <i class="fas fa-plus me-2"></i>Novo
+                        <button class="btn btn-link" type="button" data-bs-toggle="modal" data-bs-target="#createCourse">
+                            Criar formação
                         </button>
                     </div>
                 </div>

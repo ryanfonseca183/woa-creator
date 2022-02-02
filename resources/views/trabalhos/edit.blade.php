@@ -4,7 +4,7 @@
 
     @section('content')
         <main>
-            <x-back route="#" />
+            <x-back route="{{ route('portfolios.ocupacoes.show', [$trabalho->ocupacao->portfolio_id, $trabalho->ocupacao->id]) }}" />
             
             <form method="POST" action="{{ route('trabalhos.update', $trabalho) }}" class="needs-validation mb-5" novalidate enctype="multipart/form-data">
                 @csrf 
@@ -24,7 +24,7 @@
                     </div>
                     <x-controls.input label="Titulo" name="titulo" required value="{{ $trabalho->titulo }}" />
             
-                    <x-controls.textarea label="Descrição" name="descricao" rows="8" class="text-center">{{ $trabalho->descricao }}</x-controls.textarea>
+                    <x-controls.textarea label="Descrição" name="descricao" rows="8" class="text-center" maxlength="255">{{ $trabalho->descricao }}</x-controls.textarea>
             
                     <x-controls.toggle label="Visível" name="visivel" value="1" :checked="$trabalho->visivel == 1" />
                 </div>

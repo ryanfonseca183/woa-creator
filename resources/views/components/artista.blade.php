@@ -2,12 +2,12 @@
 
 <div class="row align-items-center">
     <div class="col-auto">
-        <a href="#">
+        <a href="{{ route('user.profile', $artista->id) }}">
             <x-avatar :user="$artista" />
         </a>
     </div>
     <div class="col">
-        <h4 class="mb-0"><a href="#">{{ $artista->nome}}</a></h4>
+        <h4 class="mb-0"><a href="{{ route('user.profile', $artista->id) }}">{{ $artista->nome}}</a></h4>
         
         <small class="text-muted mb-2 d-block">@if(!$artista->cidade || !$artista->estado) Localização desconhecida @else {{ $artista->cidade }}, {{ $artista->estado }} @endif</small>
         <p class="card-text">

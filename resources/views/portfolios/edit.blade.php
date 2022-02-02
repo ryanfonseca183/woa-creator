@@ -5,7 +5,7 @@
 @section('content')
     <main>
         <x-page-title title="Editar portfólio">
-            <x-back route="portfolios.index" />
+            <x-back route="{{ route('portfolios.index') }}" />
         </x-page-title>
         
 
