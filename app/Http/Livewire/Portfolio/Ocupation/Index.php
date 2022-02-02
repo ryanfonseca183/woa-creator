@@ -11,7 +11,14 @@ class Index extends Component
     protected $listeners = ['ocupationSaved' => '$refresh', 'ocupationUpdated' => '$refresh', 'ocupationDeleted' => '$refresh'];
 
     public function deleteOcupation($id) {
-        $this->portfolio->ocupacoes()->where('ocupacao.id', $id)->delete();
+        $ocupacao = $this->portfolio->ocupacoes()->findOrFail($id);
+        
+        //Deleta os trabalhos
+        $ocupacao->trabalhos()->delete();
+
+        //Deleta as ocupações
+        $ocupacao->delete();
+
         $this->emit('ocupationDeleted');
     }
     public function render()

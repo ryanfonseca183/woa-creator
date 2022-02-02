@@ -102,8 +102,19 @@ class PortfolioController extends Controller
      */
     public function destroy($id)
     {
-        auth()->user()->portfolios()->where('portfolio.id', $id)->delete();
+        $portfolio = auth()->user()->portfolios()->findOrFail($id);
+        $ocupacoes = $portfolio->ocupacoes;
 
+        //Deleta os trabalhos
+        foreach($ocupacoes as $ocupacao) {
+            $ocupacao->trabalhos()->delete();
+        }
+        //Deleta as ocupações
+        $portfolio->ocupacoes()->delete();
+        
+        //Deleta o portfólio
+        $portfolio->delete();
+        
         return redirect()->route('portfolios.index');
     }
 }

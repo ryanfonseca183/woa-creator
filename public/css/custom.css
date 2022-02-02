@@ -7,11 +7,25 @@
   --yellow-25: #f9d25d40;
 
   --purple: #363a8a;
+  --light-purple: #4b50aa;
   --orange: #f3b122;
   --gradient: -webkit-linear-gradient(200deg, rgba(114,215,252,1) 0%, rgba(189,239,208,1) 100%);
   --font-header:  'Georama', sans-serif;
   --font-body: 'Atkinson Hyperlegible', sans-serif;
   --font-actions: 'Roboto', sans-serif;
+}
+.nav-pills .nav-link.active {
+  background-color: var(--orange);
+}
+.text-shadow-1 {
+  text-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 25%);
+}
+.img-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }
 .flex-1 {
   flex: 1;
@@ -48,10 +62,6 @@
 }
 a {
   text-decoration: none;
-  color: var(--orange);
-}
-a:hover {
-  color: var(--yellow)
 }
 .mx-n3 {
   margin: 0 -0.5rem;
@@ -91,6 +101,10 @@ body {
   border:none;
   color: var(--orange);
   font-size: 1rem;
+}
+.list-group-item.active {
+  background: var(--light-purple) !important;
+  border: none;
 }
 .like-btn {
   width: 50px;
@@ -251,9 +265,6 @@ body {
   margin: 0;
   outline: none;
   background:transparent;
-}
-.btn-icon {
-
 }
 .auth-container::after{
   content: "";

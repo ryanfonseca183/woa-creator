@@ -19,6 +19,9 @@ class Ocupacao extends Model
      */
     protected $fillable = ['nome', 'visivel'];
 
+    public function scopeVisivel($query) {
+        return $query->where('visivel', 1);
+    }
     public function portfolio() {
         return $this->belongsTo('App\Models\Portfolio', 'portfolio_id');
     }

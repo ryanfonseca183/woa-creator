@@ -32,7 +32,9 @@ class Portfolio extends Model
         'visualizacoes' => 'int',
         'curtidas' => 'int',
     ];
-
+    public function scopeVisivel($query) {
+        return $query->where('visivel', 1);
+    }
     public function ocupacoes() {
         return $this->hasMany(Ocupacao::class, 'portfolio_id');
     }
