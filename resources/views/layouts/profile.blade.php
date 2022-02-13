@@ -32,7 +32,7 @@
                                     <i class="fas fa-stream me-3"></i>
                                     Meus portfólios
                                 </a>
-                                <a href="#" class="list-group-item border-0">
+                                <a href="{{ route('user.avaliacoes') }}" class="list-group-item border-0 @if(Route::is('user.avaliacoes')) active rounded-pill @endif">
                                     <i class="far fa-heart me-3"></i>
                                     Avaliações
                                 </a>

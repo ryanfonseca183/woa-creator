@@ -47,7 +47,6 @@
                         <li><a href="{{ route('home') }}" class="nav-link px-2">Inicio</a></li>
                         <li><a href="{{ route('navegacao', ['search_type' => 'artista']) }}" class="nav-link px-2">Artistas</a></li>
                         <li><a href="{{ route('navegacao', ['search_type' => 'trabalho']) }}" class="nav-link px-2">Trabalhos</a></li>
-                        <li><a href="#" class="nav-link px-2">Contato</a></li>
                     </ul>
                     @guest 
                         <div class="text-end">
@@ -62,7 +61,7 @@
                             </button>
                             <ul class="dropdown-menu" >
                                 <li><a class="dropdown-item" href="{{ route('user.profile') }}">Perfil</a></li>
-                                <li><a class="dropdown-item" href="#">Portfolios</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.portfolios.index', Auth::id()) }}">Portfolios</a></li>
                                 <li><a class="dropdown-item" href="#">Avaliações</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>

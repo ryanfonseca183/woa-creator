@@ -8,6 +8,11 @@ use App\Models\User;
 
 class UsuarioController extends Controller
 {
+    public function avaliacoes() {
+        $trabalhos = Auth::user()->avaliacoes()->paginate(10);
+
+        return view('user.avaliacoes', compact('trabalhos'));
+    }
     public function trabalhos($id = null) {
         if(Auth::check() && (!$id || Auth::id() == $id)) {
             return view('user.perfil');

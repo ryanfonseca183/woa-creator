@@ -26,15 +26,12 @@ Route::get('navegacao', NavegacaoController::class)->name('navegacao');
 
 Route::get('trabalhos/{trabalho}', [TrabalhoController::class, 'show'])->name('trabalhos.show');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 Route::get('usuario/{id?}', [UsuarioController::class, 'trabalhos'])->name('user.profile');
 Route::get('usuario/{id}/portfolios', [UsuarioController::class, 'portfolios'])->name('user.portfolios.index');
 Route::get('usuario/{usuario}/portfolios/{portfolio}', [UsuarioController::class, 'portfolio'])->name('user.portfolios.show');
 
 Route::middleware('auth')->group(function(){
+    Route::get('avaliacoes', [UsuarioController::class, 'avaliacoes'])->name('user.avaliacoes');
     Route::resource('portfolios', PortfolioController::class);
     Route::get('portfolios/{portfolio}/ocupacoes/{ocupacao}/show', OcupacaoController::class)->name('portfolios.ocupacoes.show');
     Route::resource('portfolios.ocupacoes.trabalhos', TrabalhoController::class)->parameters([
