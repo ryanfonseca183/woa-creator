@@ -12,6 +12,8 @@
         </div>
         {{-- EXPERIENCIA PROFISSIONAL --}}
         @foreach($portfolio->ocupacoes as $key => $ocupacao)
+            <h2>{{$ocupacao->nome}}</h2>
+            <hr>
             <livewire:portfolio.ocupation.work.index wire:key="ocupacao.{{ $key }}" :ocupation="$ocupacao"/>
         @endforeach
         {{-- FORMAÇÃO ACADÊMICA --}}

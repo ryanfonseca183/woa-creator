@@ -2,7 +2,7 @@
 
 <div class="card mb-3">
     <a href="{{ route('trabalhos.show', $trabalho->id) }}">
-        <img src="{{ asset('storage/' . $trabalho->midias->first()->url_midia) }}" class="card-work-img card-img-top" alt="{{ $trabalho->midias->first()->descricao }}">
+        <img src="{{ $trabalho->midias->first() ? asset('storage/' . $trabalho->midias->first()->url_midia) : asset('img/picture-not-found.gif') }}" class="card-work-img card-img-top">
     </a>
     <div class="card-body">
         <h5 class="card-title"><a href="{{ route('trabalhos.show', $trabalho->id) }}">{{$trabalho->titulo}}</a></h5>
