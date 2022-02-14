@@ -40,6 +40,8 @@ class TrabalhoController extends Controller
      */
     public function create($portfolio, $ocupacao)
     {
+        [$portfolio, $ocupacao] = $this->loadModels($portfolio, $ocupacao);
+
         return view('trabalhos.create', compact('ocupacao', 'portfolio'));
     }
     /**
@@ -83,13 +85,11 @@ class TrabalhoController extends Controller
     {
         abort_if(!$trabalho->visivel, 404);
         $user = $request->user();
+        $visualizacao = $user ? $trabalho->visualizacoes()->where('user_id', $user->id) 
+                              : $trabalho->visualizacoes()->where('ip', $request->ip());
 
-        if(!$trabalho->visualizacoes()->where('ip', $request->ip())
-                                      ->when($user, function($query, $user) { 
-                                        return $query->orWhere('user_id', $user->id); 
-                                      })->exists()) {
-
-            $trabalho->visualizacoes()->create(['user_id', $user->id ?? null, 'ip' => $request->ip()]);
+        if(!$visualizacao->exists()) {
+            $trabalho->visualizacoes()->create(['user_id' => $user->id ?? null, 'ip' => $request->ip()]);
             $trabalho->increment('total_visualizacoes');
         }
 
@@ -149,12 +149,14 @@ class TrabalhoController extends Controller
      * @param  \App\Models\Trabalho  $trabalho
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Trabalho $trabalho)
+    public function destroy(Request $request, $trabalho)
     {
+        $trabalho = $request->user()->trabalhos()->findOrFail($trabalho);
+
         $ocupacao = $trabalho->ocupacao;
 
         $trabalho->delete();
 
-        return redirect()->route('portfolios.ocupacoes.show', [$ocupacao->id, $ocupacao->portfolio_id]);
+        return redirect()->route('portfolios.ocupacoes.show', [$ocupacao->portfolio_id, $ocupacao->id]);
     }
 }

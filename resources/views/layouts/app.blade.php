@@ -62,7 +62,7 @@
                             <ul class="dropdown-menu" >
                                 <li><a class="dropdown-item" href="{{ route('user.profile') }}">Perfil</a></li>
                                 <li><a class="dropdown-item" href="{{ route('user.portfolios.index', Auth::id()) }}">Portfolios</a></li>
-                                <li><a class="dropdown-item" href="#">Avaliações</a></li>
+                                <li><a class="dropdown-item" href="{{ route('user.avaliacoes') }}">Avaliações</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="POST">

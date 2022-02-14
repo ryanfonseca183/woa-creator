@@ -25,7 +25,7 @@
                 <h2 class="mb-0">Trabalhos populares</h2>
                 <p class="section-description">Esse ex excepteur amet quis incididunt reprehenderit reprehenderit veniam laboris.</p>
             </div>
-            <div class="row">
+            <div class="row gy-4">
                 @foreach($trabalhos as $trabalho)
                     <div class="col-md-6 col-lg-4">
                         <x-trabalho :trabalho="$trabalho" />
@@ -40,28 +40,28 @@
   {{-- PASSOS --}}
   <section class="home-section teps-section">
       <div class="container">
-          <div class="row gx-2 align-items-center">
-              <div class="col">
+          <div class="row gy-4 gx-2 align-items-center">
+              <div class="col-md">
                   <div class="step">
                       <i class="fas fa-sign-in-alt"></i>
                       <h5>Crie uma conta</h5>
                       <p>Aliquip mollit aute duis laboris adipisicing reprehenderit qui sint nostrud</p>
                   </div>
               </div>
-              <div class="col-auto">
+              <div class="col-auto d-none d-md-block">
                   <img src="{{ asset('img/arrow-right.png') }}" class="step-arrow">
               </div>
-              <div class="col">
+              <div class="col-md">
                   <div class="step">
                       <i class="fas fa-sliders-h"></i>
                       <h5>Configure seu portfólio</h5>
                       <p>Anim aliqua ea proident reprehenderit cupidatat nostrud.</p>
                   </div>
               </div>
-              <div class="col-auto">
+              <div class="col-auto d-none d-md-block">
                   <img src="{{ asset('img/arrow-right.png') }}" class="step-arrow">
               </div>
-              <div class="col">
+              <div class="col-md">
                   <div class="step">
                       <i class="far fa-laugh-beam"></i>
                       <h5>Divulgue seu trabalho</h5>

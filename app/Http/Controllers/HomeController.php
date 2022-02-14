@@ -17,7 +17,12 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        $trabalhos = Trabalho::visivel()->orderBy('total_curtidas', 'desc')->orderBy('total_visualizacoes', 'desc')->take(3)->get();
+        $trabalhos = Trabalho::visivel()
+                              ->orderBy('total_curtidas', 'desc')
+                              ->orderBy('total_visualizacoes', 'desc')
+                              ->with('midias')
+                              ->take(3)
+                              ->get();
 
         $artistas = User::select(DB::raw('users.nome, users.nome_artistico, users.descricao, users.avatar, users.cidade, users.estado, sum(trabalho.total_visualizacoes) as trabalhos_visualizacoes_sum, sum(trabalho.total_curtidas) as trabalhos_curtidas_sum'))
                         ->join('trabalho', 'users.id', '=', 'trabalho.user_id')
@@ -25,6 +30,7 @@ class HomeController extends Controller
                         ->groupBy('users.id')
                         ->orderBy('trabalhos_curtidas_sum', 'desc')
                         ->orderBy('trabalhos_visualizacoes_sum', 'desc')
+                        ->take(3)
                         ->get();
 
         return view('welcome', compact(['trabalhos', 'artistas']));

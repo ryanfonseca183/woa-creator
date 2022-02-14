@@ -4,7 +4,9 @@
 
     @section('content')
         <main>
-            <x-back route="{{ route('portfolios.ocupacoes.show', [$trabalho->ocupacao->portfolio_id, $trabalho->ocupacao->id]) }}" />
+            <x-page-title title="Editar trabalho" >
+                <x-back route="{{ route('portfolios.ocupacoes.show', [$trabalho->ocupacao->portfolio_id, $trabalho->ocupacao->id]) }}" />
+            </x-page-title>
             
             <form method="POST" action="{{ route('trabalhos.update', $trabalho) }}" class="needs-validation mb-5" novalidate enctype="multipart/form-data">
                 @csrf 

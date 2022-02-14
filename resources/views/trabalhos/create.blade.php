@@ -4,7 +4,10 @@
 
 @section('content')
     <main>
-        <form method="POST" action="{{ route('portfolios.ocupacoes.trabalhos.store', [$portfolio, $ocupacao]) }}" class="needs-validation mb-5" novalidate enctype="multipart/form-data">
+        <x-page-title title="Criar trabalho" />
+           
+
+        <form method="POST" action="{{ route('portfolios.ocupacoes.trabalhos.store', [$portfolio->id, $ocupacao->id]) }}" class="needs-validation mb-5" novalidate enctype="multipart/form-data">
             @csrf 
             {{-- DADOS GERAIS --}}
             <div class="card card-body mb-4">

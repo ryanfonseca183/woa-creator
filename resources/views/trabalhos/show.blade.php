@@ -39,7 +39,13 @@
         <div class="card-footer text-center bg-light p-5">
             <livewire:like-btn :trabalho="$trabalho" />
             <h1>{{ $trabalho->titulo }}</h1>
-            <i>Publicado em {{$trabalho->created_at->day}} de {{ $trabalho->created_at->locale('pt')->monthName }} de {{ $trabalho->created_at->year }}</i>
+            <i>
+                Publicado em 
+                {{ $trabalho->created_at->day }} de 
+                {{ $trabalho->created_at->locale('pt')->monthName }} de 
+                {{ $trabalho->created_at->year }}
+            </i> <br/><br/>
+            <a href="{{ route('user.profile', $trabalho->user_id) }}">Ver outros trabalhos deste artista</a>
         </div>
     </div>
 </div>

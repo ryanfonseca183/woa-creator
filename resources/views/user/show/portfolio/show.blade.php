@@ -12,42 +12,24 @@
         </div>
         {{-- EXPERIENCIA PROFISSIONAL --}}
         @foreach($portfolio->ocupacoes as $key => $ocupacao)
-            <h2>{{$ocupacao->nome}}</h2>
-            <hr>
+            <h2 class="page-title">{{$ocupacao->nome}}</h2>
             <livewire:portfolio.ocupation.work.index wire:key="ocupacao.{{ $key }}" :ocupation="$ocupacao"/>
         @endforeach
+        
         {{-- FORMAÇÃO ACADÊMICA --}}
-       <div class="card mb-5">
-            <div class="card-body">
-                    <h2 class="mb-0 h5">Formação acadêmica</h2>
+        @php 
+            $formacoes = $portfolio->cursos->whereNotNull('user_id');
+            $cursos = $portfolio->cursos->whereNull('user_id');
+        @endphp
+        @if($portfolio->cursos->isNotEmpty())
+            <div class="card mb-5">
+                @if($formacoes->isNotEmpty())
+                    <x-cursos title="Formação acadêmica" icon="fas fa-graduation-cap" :cursos="$formacoes" />
+                @endif
+                @if($cursos->isNotEmpty())
+                    <x-cursos title="Cursos complementares" icon="fas fa-certificate" :cursos="$cursos" />
+                @endif
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <span>Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais - IFMG Campus Formiga</span> <br/>
-                    <span>Graduação, Ciencias da computação</span> <br/>
-                    <span>2021 - 2024</span>
-                </li>
-                <li class="list-group-item">
-                    <span>Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais - IFMG Campus Formiga</span> <br/>
-                    <span>Graduação, Ciencias da computação</span> <br/>
-                    <span>2021 - 2024</span>
-                </li>
-             </ul>
-             <div class="card-body">
-                <h2 class="mb-0 h5">Cursos complementares</h2>
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <span>Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais - IFMG Campus Formiga</span> <br/>
-                    <span>Graduação, Ciencias da computação</span> <br/>
-                    <span>2021 - 2024</span>
-                </li>
-                <li class="list-group-item">
-                    <span>Instituto Federal de Educação, Ciência e Tecnologia de Minas Gerais - IFMG Campus Formiga</span> <br/>
-                    <span>Graduação, Ciencias da computação</span> <br/>
-                    <span>2021 - 2024</span>
-                </li>
-            </ul>
-       </div>
+        @endif
     </main>
 @endsection

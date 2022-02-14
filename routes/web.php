@@ -32,7 +32,7 @@ Route::get('usuario/{usuario}/portfolios/{portfolio}', [UsuarioController::class
 
 Route::middleware('auth')->group(function(){
     Route::get('avaliacoes', [UsuarioController::class, 'avaliacoes'])->name('user.avaliacoes');
-    Route::resource('portfolios', PortfolioController::class);
+    Route::resource('portfolios', PortfolioController::class)->except('show');
     Route::get('portfolios/{portfolio}/ocupacoes/{ocupacao}/show', OcupacaoController::class)->name('portfolios.ocupacoes.show');
     Route::resource('portfolios.ocupacoes.trabalhos', TrabalhoController::class)->parameters([
         'ocupacoes' => 'ocupacao'

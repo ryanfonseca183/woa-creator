@@ -15,7 +15,7 @@ class OcupacaoController extends Controller
      */
     public function __invoke(Request $request, $portfolio, $ocupacao)
     {
-        $ocupacao =  Portfolio::findOrFail($portfolio)->ocupacoes()->findOrFail($ocupacao);
+        $ocupacao =  $request->user()->portfolios()->findOrFail($portfolio)->ocupacoes()->findOrFail($ocupacao);
         return view('ocupacao.show', compact('ocupacao'));
     }
 }
