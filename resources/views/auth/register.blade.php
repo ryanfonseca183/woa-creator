@@ -5,11 +5,11 @@
 @section('body')
 <div class="container-fluid auth-container auth-register">
     <div class="row vh-100 align-items-center justify-content-center">
-        <div class="col-6">
+        <div class="col-md-10 col-xl-8 col-xxl-6">
             <div class="row g-0 shadow rounded overflow-hidden">
-                <div class="col set-bg" style="background-image: url({{ asset('img/img5.png') }})" ></div>
-                <div class="col ">
-                    <div class="p-5 border-0">
+                <div class="col set-bg" style="background-image: url({{ asset('img/background/auth/bg-auth-'. mt_rand(1, 5) .'.gif') }})" ></div>
+                <div class="col-sm">
+                    <div class="p-4 p-md-5 border-0">
                         <div class="text-center">
                             <a href="{{ route('home') }}">
                                 <img src="{{ asset('img/logo.png') }}" alt="" class="img-fluid mb-4" style="max-height: 150px">
@@ -26,7 +26,7 @@
                             <x-controls.input type="email" label="E-mail" name="email" required class="form-control-lg rounded-pill" />
 
                             <div class="row gx-2">
-                                <div class="col">
+                                <div class="col-lg">
                                     {{-- SENHA --}}
                                     <x-controls.input type="password" label="Senha" name="password" required autocomplete="new-password" class="form-control-lg rounded-pill" />
                                 </div>

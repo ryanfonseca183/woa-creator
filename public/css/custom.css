@@ -333,6 +333,12 @@ button[class^="link-"] {
   background-repeat: no-repeat;
   background-position: center;
 }
+.auth-login .set-bg, .auth-register .set-bg {
+  background-size: 800px auto;
+}
+.alert-light {
+  background-color: #efefef6b !important;
+}
 .page-title {
   margin-bottom: 1.5rem;
   padding:  0.5rem;
