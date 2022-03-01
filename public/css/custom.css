@@ -158,7 +158,8 @@ body {
   justify-content: center;
 }
 .img-wrapper {
-  background: #f8f9fa  url('../img/icons/image.png') no-repeat center;
+  background: #f8f9fa  url('../img/icons/img.png') no-repeat center;
+  background-size: 84px;
   border: 3px dashed rgba(0,0,0,.125);
   cursor: pointer;
 }

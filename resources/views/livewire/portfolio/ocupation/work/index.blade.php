@@ -35,8 +35,11 @@
                     {{ $this->trabalho->created_at->locale('pt')->monthName }} de 
                     {{ $this->trabalho->created_at->year }}
                 </i>
-                @if(Auth::check() && $this->trabalho->user_id == Auth::id())
-                    <div class="mt-3">
+                <div class="mt-3">
+                    <a href="{{ route('trabalhos.show', $this->trabalho->id) }}" class="btn btn-icon me-3">
+                        <i class="far fa-eye me-1"></i> Visualizar
+                    </a>
+                    @if(Auth::check() && $this->trabalho->user_id == Auth::id())
                         <a href="{{ route('trabalhos.edit', $this->trabalho->id) }}" class="btn btn-icon me-3">
                             <i class="fas fa-edit me-1"></i> Editar
                         </a>
@@ -47,17 +50,11 @@
                                 <i class="far fa-trash-alt me-1"></i> Deletar
                             </button>
                         </form>
-                    </div>
-                @endif
+                    @endif
+                </div>
             </div>
         </div>
     @else
-        <div class="text-center bg-light rounded p-5">
-            <div class="icon-wrapper icon-md">
-                <i class="fs-1 fas fa-search"></i>
-            </div>
-            <h3 class="h5">Nenhum trabalho cadastrado</h3>
-            <p>Cillum cillum officia elit culpa cillum eu voluptate.</p>
-        </div>
+        <x-not-found description="Crie novos trabalhos para começar a divulgação" />
     @endif
 </div>

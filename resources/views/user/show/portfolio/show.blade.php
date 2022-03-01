@@ -11,10 +11,19 @@
             </div>
         </div>
         {{-- EXPERIENCIA PROFISSIONAL --}}
+        @php $found = false; @endphp
         @foreach($portfolio->ocupacoes as $key => $ocupacao)
-            <h2 class="page-title">{{$ocupacao->nome}}</h2>
-            <livewire:portfolio.ocupation.work.index wire:key="ocupacao.{{ $key }}" :ocupation="$ocupacao"/>
+            @if($ocupacao->trabalhos->isNotEmpty())
+                @php $found = true; @endphp
+                <h2 class="page-title">{{$ocupacao->nome}}</h2>
+                <livewire:portfolio.ocupation.work.index wire:key="ocupacao.{{ $key }}" :ocupation="$ocupacao"/>
+            @endif
         @endforeach
+        @if(!$found)
+            <div class="mb-5">
+                <x-not-found description="O artista não cadastrou nenhum trabalho para este portfólio" />
+            </div>
+        @endif
         
         {{-- FORMAÇÃO ACADÊMICA --}}
         @php 

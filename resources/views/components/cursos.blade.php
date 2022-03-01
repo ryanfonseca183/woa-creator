@@ -12,6 +12,9 @@
                 {{ Carbon\Carbon::createFromFormat('Y-m-d', $curso->data_inicio)->format('Y') }} - 
                 {{ Carbon\Carbon::createFromFormat('Y-m-d', $curso->data_inicio)->format('Y') }}
             </span>
+            <div class="alert alert-light mt-2">
+                {{$curso->descricao}}
+            </div>
         </li>
     @endforeach
 </ul>

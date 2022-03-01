@@ -12,7 +12,9 @@
                 </div>
                 {{-- FILTROS DE PESQUISA --}}
                 <form action="{{ route('navegacao') }}" method="GET">
-                    <x-controls.search class="mb-4" />
+                    <div class="mb-4">
+                        <x-controls.search value="{{ request()->query('search_text') }}" />
+                    </div>
 
                     <div class="row justify-content-center justify-content-lg-between align-items-center gy-2">
                         <div class="col-auto order-last order-md-first">

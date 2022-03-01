@@ -5,11 +5,15 @@
 @section('content')
     <main>
         <div class="row">
-            @foreach($usuario->portfolios as $portfolio) 
+            @forelse($usuario->portfolios as $portfolio) 
                 <div class="col-lg-4">
                     <x-portfolio :portfolio="$portfolio" />
                 </div>
-            @endforeach
+            @empty 
+                <div class="col">
+                    <x-not-found description="Este artista ainda não criou nenhum portfólio" />
+                </div>
+            @endforelse
         </div>
     </main>
 @endsection

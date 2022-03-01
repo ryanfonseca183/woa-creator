@@ -173,9 +173,11 @@
             });
             Livewire.on('userGeneralInfoUpdated', function(){
                 userGeneralInfoModal.hide();
+                toastr.success('Informações gerais atualizadas com sucesso!');
             })
             Livewire.on('userContactInfoUpdated', function(){
-                userGeneralInfoModal.hide();
+                userContactInfoModal.hide();
+                toastr.success('Informações de contato atualizadas com sucesso!');
             })
             Livewire.on('courseUpdated', function(){
                 editCourseModal.hide();
