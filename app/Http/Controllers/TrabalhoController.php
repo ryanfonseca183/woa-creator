@@ -60,7 +60,7 @@ class TrabalhoController extends Controller
             'descricao' => 'required|string|max:255',
             'visivel' => 'nullable|boolean',
             'filepond' => 'required|array',
-            'filepond.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'filepond.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
         ]);
 
         //Armazena o trabalho no banco
@@ -123,7 +123,7 @@ class TrabalhoController extends Controller
             'descricao' => 'required|string',
             'visivel' => 'nullable|boolean',
             'filepond' => 'required|array',
-            'filepond.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'filepond.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:10240',
         ]);
         $trabalho->update($validated);
 

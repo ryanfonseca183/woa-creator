@@ -262,11 +262,6 @@ body {
 }
 .form-group
 .invalid-feedback {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position:absolute;
-  bottom:-1.25rem;
   font-size: small;
   font-style: italic;
   text-align: right;

@@ -50,9 +50,9 @@ class NavegacaoController extends Controller
             })
             ->visivel()
             ->with(['midias' => function($query) {
-                return $query->where('principal', 1);
+                return $query->orderBy('principal', 'desc');
             }])
-            ->orderBy($validated['orderBy']);
+            ->orderBy($validated['orderBy'], 'desc');
     }
     public function searchArtists($validated) {
         $nome = $validated['search_text'] ?? "";
@@ -65,6 +65,7 @@ class NavegacaoController extends Controller
                     return $query->where('id', '!=', Auth::id());
                 })
                 ->withSum('trabalhos', 'total_visualizacoes')
-                ->withSum('trabalhos', 'total_curtidas');
+                ->withSum('trabalhos', 'total_curtidas')
+                ->orderBy($validated['orderBy'] == "total_curtidas" ? 'trabalhos_sum_total_curtidas' : 'trabalhos_sum_total_visualizacoes', 'desc');
     }
 }

@@ -6,7 +6,7 @@
     <main>
         <h2 class="h4 mb-4">Trabalhos curtidos</h2>
         <div class="row mb-4">
-            @forelse([] as $trabalho)
+            @forelse($trabalhos as $trabalho)
                 <div class="col-md-6 col-xl-4">
                     <x-trabalho :trabalho="$trabalho" />
                 </div>

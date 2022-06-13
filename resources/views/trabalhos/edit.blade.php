@@ -43,12 +43,12 @@
                             <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                         </div>
                     </div>
-                    @error('midia')
-                        <span class="invalid-feedback d-block">
-                            {{$message}}
-                        </span>
-                    @enderror
                 </div>
+                @error('filepond.*')
+                    <span class="invalid-feedback d-block">
+                        {{$message}}
+                    </span>
+                @enderror
                 <div class="d-flex justify-content-end">
                     <a href="{{ route("portfolios.ocupacoes.show", ['portfolio' => $trabalho->ocupacao->portfolio_id, 'ocupacao' => $trabalho->ocupacao_id])}}" class="btn btn-outline-secondary btn-lg me-2">Cancelar</a>
                     <button class="btn btn-primary btn-lg">Salvar</button>

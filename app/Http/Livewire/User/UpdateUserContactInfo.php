@@ -17,10 +17,10 @@ class UpdateUserContactInfo extends Component
         ]);
     }
     protected $rules = [
-        'url_facebook' => 'required|string|url|max:255',
-        'url_instagram' => 'required|string|url|max:255',
-        'url_twitter' => 'required|string|url|max:255',
-        'celular' => 'required|string|max:15',
+        'url_facebook' => 'nullable|string|url|max:255',
+        'url_instagram' => 'nullable|string|url|max:255',
+        'url_twitter' => 'nullable|string|url|max:255',
+        'celular' => 'nullable|string|max:15',
     ];
 
     public function save() {

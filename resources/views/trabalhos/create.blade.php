@@ -40,8 +40,14 @@
                         <h3 class="h5 mb-0">Midia</h3>
                         <p class="mb-0">Voluptate eiusmod ea nulla aute.</p>
                     </div>
+                   
                 </div>
             </div>
+            @error('filepond.*')
+                <span class="invalid-feedback d-block">
+                    {{$message}}
+                </span>
+            @enderror
 
             <div class="d-flex justify-content-end">
                 <a href="{{ route("portfolios.ocupacoes.show", ['portfolio' => $portfolio, 'ocupacao' => $ocupacao]) }}" class="btn btn-outline-secondary btn-lg me-2">Cancelar</a>
